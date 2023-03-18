@@ -12,8 +12,8 @@ export default function PriceTable({ type, data }: PriceTableProps) {
   const navigate = useNavigate()
   const cloneData = data && [...data]
   const sortedCloneData = type === 'DIFF'
-    ? cloneData?.sort((a, b) => a.diffRank - b.diffRank)
-    : cloneData?.sort((a, b) => a.diffRateRank - b.diffRateRank)
+    ? cloneData?.sort((a, b) => a.priceDiffRank - b.priceDiffRank)
+    : cloneData?.sort((a, b) => a.priceDiffRateRank - b.priceDiffRateRank)
   return (
     <Wrapper>
       <TableHead>
@@ -30,9 +30,9 @@ export default function PriceTable({ type, data }: PriceTableProps) {
       </TableHead>
       <TableBody>
         {sortedCloneData?.map((value, index) => {
-          const rank = type === 'DIFF' ? value.diffRank : value.diffRateRank
-          const prevRank = type === 'DIFF' ? value.prevDiffRank : value.prevDiffRateRank
-          const prevDayRank = type === 'DIFF' ? value.prevDayDiffRank : value.prevDayDiffRateRank
+          const rank = type === 'DIFF' ? value.priceDiffRank : value.priceDiffRateRank
+          const prevRank = type === 'DIFF' ? value.prevPriceDiffRank : value.prevPriceDiffRateRank
+          const prevDayRank = type === 'DIFF' ? value.prevDayPriceDiffRank : value.prevDayPriceDiffRateRank
           const prevDiff =
             prevRank === null
               ? 'N/A'

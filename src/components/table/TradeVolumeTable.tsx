@@ -9,6 +9,9 @@ interface VolumeTableProps {
 
 export default function VolumeTable({ data }: VolumeTableProps) {
   const navigate = useNavigate()
+  const cloneData = data && [...data]
+  const sortedCloneData = cloneData?.sort((a, b) => a.volumeDiffRateRank - b.volumeDiffRateRank)
+
   return (
     <Wrapper>
       <TableHead>
@@ -34,16 +37,15 @@ export default function VolumeTable({ data }: VolumeTableProps) {
         </div>
       </TableHead>
       <TableBody>
-        {data &&
-          data.map((value, index) => {
+        {sortedCloneData?.map((value, index) => {
             const prevDiff =
-              value.prevDiffRateRank === null
+              value.prevVolumeDiffRateRank === null
                 ? 'N/A'
-                : value.diffRateRank - value.prevDiffRateRank
+                : value.volumeDiffRateRank - value.prevVolumeDiffRateRank
             const prevDayDiff =
-              value.prevDayDiffRateRank === null
+              value.prevDayVolumeDiffRateRank === null
                 ? 'N/A'
-                : value.diffRateRank - value.prevDayDiffRateRank
+                : value.volumeDiffRateRank - value.prevDayVolumeDiffRateRank
             const rankUp = typeof prevDiff === 'number' && prevDiff < 0
             const dayRankUp =
               typeof prevDayDiff === 'number' && prevDayDiff < 0
@@ -67,7 +69,7 @@ export default function VolumeTable({ data }: VolumeTableProps) {
                 }
               >
                 <div className='rank'>
-                  <span>{value.diffRateRank}</span>
+                  <span>{value.volumeDiffRateRank}</span>
                 </div>
                 <div className='name'>
                   <span>

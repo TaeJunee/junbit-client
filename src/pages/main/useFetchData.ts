@@ -54,6 +54,10 @@ export default function useFetchData() {
       { refetchOnMountOrArgChange: false, skip: priceSkip },
     )
 
+  useEffect(() => {
+    console.log(volumeData)
+  })
+
   return {
     datetime,
     unit,

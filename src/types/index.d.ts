@@ -16,25 +16,29 @@ type UnitType = 1 | 2 | 4 | 8 | 12 | 24
 type RadioOptionType = 'VOLUME' | 'PRICE'
 type PriceRankType = 'DIFF' | 'DIFF_RATE'
 interface TradeVolumeRankDto {
-  datetime: Date
-  diffRateRank: number
+  unit: number
   market: string
-  prevDayDiffRateRank: number | null
-  prevDiffRateRank: number | null
+  datetime: Date
   volumeDiff: number
   volumeDiffRate: number
+  volumeDiffRateRank: number
+  prevVolumeDiffRank: number | null
+  prevVolumeDiffRateRank: number | null
+  prevDayVolumeDiffRank: number | null
+  prevDayVolumeDiffRateRank: number | null
 }
 interface TradePriceRankDto {
-  datetime: Date
-  diffRank: number
-  diffRateRank: number
+  unit: number
   market: string
-  prevDiffRank: number | null
-  prevDayDiffRank: number | null
-  prevDayDiffRateRank: number | null
-  prevDiffRateRank: number | null
+  datetime: Date
   priceDiff: number
   priceDiffRate: number
+  priceDiffRank: number
+  priceDiffRateRank: number
+  prevPriceDiffRank: number | null
+  prevPriceDiffRateRank: number | null
+  prevDayPriceDiffRank: number | null
+  prevDayPriceDiffRateRank: number | null
 }
 interface TokenData {
   [key: string]: {
