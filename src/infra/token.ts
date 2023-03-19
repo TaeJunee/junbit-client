@@ -1,3 +1,5 @@
+import { TokenData } from 'types'
+
 export const tokenData: TokenData = {
   'KRW-BTC': {
     kr_name: '비트코인',

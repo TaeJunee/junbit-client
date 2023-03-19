@@ -3,7 +3,10 @@ import { useSelector } from 'react-redux'
 import { useGetTradeVolumeRankQuery } from '../../redux/api/token/tradeVolume/tradeVolumeSlice'
 import { currentDatetime } from '../../redux/datetime/datetimeSlice'
 import { currentUnit } from '../../redux/unit/unitSlice'
-import { currentRadioOption, currentRadioPriceOption } from '../../redux/radioOption/radioOptionSlice'
+import {
+  currentRadioOption,
+  currentRadioPriceOption,
+} from '../../redux/radioOption/radioOptionSlice'
 import { useGetTradePriceRankQuery } from '../../redux/api/token/tradePrice/tradePriceSlice'
 
 export default function useFetchData() {
@@ -34,10 +37,11 @@ export default function useFetchData() {
     ).toISOString()
   }
 
-  const { data: volumeData, isLoading: isVolumeDataLoading } = useGetTradeVolumeRankQuery(
-    { unit: unit.value, datetime },
-    { refetchOnMountOrArgChange: false, skip: volumeSkip },
-  )
+  const { data: volumeData, isLoading: isVolumeDataLoading } =
+    useGetTradeVolumeRankQuery(
+      { unit: unit.value, datetime },
+      { refetchOnMountOrArgChange: false, skip: volumeSkip },
+    )
   const { data: prevVolumeData, isLoading: isPrevVolumeDataLoading } =
     useGetTradeVolumeRankQuery(
       { unit: unit.value, datetime: resetDatetime(datetime, unit.value) },
@@ -53,10 +57,6 @@ export default function useFetchData() {
       { unit: unit.value, datetime: resetDatetime(datetime, unit.value) },
       { refetchOnMountOrArgChange: false, skip: priceSkip },
     )
-
-  useEffect(() => {
-    console.log(volumeData)
-  })
 
   return {
     datetime,

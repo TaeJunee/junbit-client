@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import theme from '../../style/theme'
-import icArrowLeft from '../../assets/icons/arrow-left.svg'
 import icArrowRight from '../../assets/icons/arrow-right.svg'
 import useControlPanelViewModel from './useControlPanel'
 import RadioInput from './radioInput'
@@ -13,11 +12,8 @@ const ControlPanel = () => {
 
   return (
     <Wrapper isOpen={openPanel}>
-      <TogglePanelButton onClick={handleTogglePanel}>
-        <img
-          src={openPanel ? icArrowLeft : icArrowRight}
-          alt={openPanel ? '닫기' : '열기'}
-        />
+      <TogglePanelButton isOpen={openPanel} onClick={handleTogglePanel}>
+        <img src={icArrowRight} alt={openPanel ? '닫기' : '열기'} />
       </TogglePanelButton>
       <ControllerWrapper isOpen={openPanel}>
         <RadioInput />
@@ -35,24 +31,26 @@ export default ControlPanel
 
 const Wrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
-  width: ${(props) => (props.isOpen ? '360px' : '0px')};
+  width: ${(props) => (props.isOpen ? '320px' : '0px')};
   height: 100%;
   background: white;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
   flex-shrink: 0;
 `
-const TogglePanelButton = styled.div`
+const TogglePanelButton = styled.div<{ isOpen: boolean }>`
   position: absolute;
   top: 5px;
-  right: -40px;
+  right: ${(props) => (props.isOpen ? '0px' : '-40px')};
   width: 40px;
   height: 40px;
   padding: 12px;
   background-color: white;
-  border: 1px solid ${theme.colors.grey40};
+  box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 0 12px 12px 0;
   cursor: pointer;
+  transform: ${(props) => (props.isOpen ? 'rotateY(180deg)' : '')};
+  transition: all 0.3s ease-in-out;
 
   img {
     width: 100%;
