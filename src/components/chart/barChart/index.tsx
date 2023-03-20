@@ -1,30 +1,35 @@
 import VolumeChart from './VolumeChart'
 import PriceChart from './PriceChart'
-import { ChartProps, XScale, YScale } from '..'
+import { ChartProps, XScaleBand, YScale } from '..'
 import AxisBottom from '../axisBottom/AxisBottom'
 import AxisLeft from '../axisBottom/AxisLeft'
 
-interface BarChartProps extends ChartProps{
+interface BarChartProps extends ChartProps {
   type: RadioOptionType
+  innerWidth: number
   innerHeight: number
-  xScaleVolumeSum: XScale
+  xScaleVolumeSum: XScaleBand
+  xScalePriceSum: XScaleBand
   yScaleVolumeSum: YScale
-  xScalePriceSum: XScale
   yScalePriceSum: YScale
 }
 
-export default function BarChart({ type, innerHeight, volumeData, priceData, xScaleVolumeSum, yScaleVolumeSum, xScalePriceSum, yScalePriceSum }: BarChartProps) {
-
+export default function BarChart({
+  type,
+  innerWidth,
+  innerHeight,
+  volumeData,
+  priceData,
+  xScaleVolumeSum,
+  xScalePriceSum,
+  yScaleVolumeSum,
+  yScalePriceSum,
+}: BarChartProps) {
   if (type === 'VOLUME') {
     return (
       <>
-        <AxisBottom
-          innerHeight={innerHeight}
-          xScale={xScaleVolumeSum}
-        />
-        <AxisLeft
-          yScale={yScaleVolumeSum}
-        />
+        <AxisBottom innerHeight={innerHeight} xScale={xScaleVolumeSum} />
+        <AxisLeft innerWidth={innerWidth} yScale={yScaleVolumeSum} />
         <VolumeChart
           data={volumeData}
           innerHeight={innerHeight}
@@ -32,19 +37,12 @@ export default function BarChart({ type, innerHeight, volumeData, priceData, xSc
           yScale={yScaleVolumeSum}
         />
       </>
-      
-      
     )
   } else if (type === 'PRICE') {
     return (
       <>
-        <AxisBottom
-          innerHeight={innerHeight}
-          xScale={xScalePriceSum}
-        />
-        <AxisLeft
-          yScale={yScalePriceSum}
-        />
+        <AxisBottom innerHeight={innerHeight} xScale={xScalePriceSum} />
+        <AxisLeft innerWidth={innerWidth} yScale={yScalePriceSum} />
         <PriceChart
           data={priceData}
           innerHeight={innerHeight}
@@ -52,7 +50,6 @@ export default function BarChart({ type, innerHeight, volumeData, priceData, xSc
           yScale={yScalePriceSum}
         />
       </>
-      
     )
   } else return <>알 수 없는 오류가 발생했습니다</>
 }

@@ -1,8 +1,5 @@
 import { apiSlice } from '../../apiSlice'
-import {
-  GetTokenPriceRankDto,
-  GetTokenVolumeRankDto,
-} from './dtos'
+import { GetTokenPriceRankDto, GetTokenVolumeRankDto } from './dtos'
 
 export const chartSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
@@ -33,7 +30,5 @@ export const chartSlice = apiSlice.injectEndpoints({
   }),
 })
 
-export const {
-  useGetTokenVolumeRankQuery,
-  useGetTokenPriceRankQuery,
-} = chartSlice
+export const { useGetTokenVolumeRankQuery, useGetTokenPriceRankQuery } =
+  chartSlice

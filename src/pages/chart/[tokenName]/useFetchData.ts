@@ -33,17 +33,21 @@ export default function useFetchData() {
     }
   }, [radioOption])
 
-  const { data: tokenVolumeRankData, isLoading } = useGetTokenVolumeRankQuery(
+  const { data: tokenVolumeData, isLoading: isTokenVolumeDataLoading, isSuccess: isTokenVolumeDataSuccess } = useGetTokenVolumeRankQuery(
     { market: market as string, unit: unit.value, datetime },
     { skip: volumeSkip },
   )
-  const { data: tokenPriceRankData } = useGetTokenPriceRankQuery(
+  const { data: tokenPriceData, isLoading: isTokenPriceDataLoading, isSuccess: isTokenPriceDataSuccess } = useGetTokenPriceRankQuery(
     { market: market as string, unit: unit.value, datetime },
     { skip: priceSkip },
   )
 
   return {
-    tokenVolumeRankData: tokenVolumeRankData?.payload,
-    tokenPriceRankData: tokenPriceRankData?.payload,
+    volumeData: tokenVolumeData?.payload,
+    priceData: tokenPriceData?.payload,
+    volumeDataLoading: isTokenVolumeDataLoading,
+    priceDataLoading: isTokenPriceDataLoading,
+    volumeDataSuccess: isTokenVolumeDataSuccess,
+    priceDataSuccess: isTokenPriceDataSuccess,
   }
 }

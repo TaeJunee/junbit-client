@@ -5,8 +5,12 @@ import Chart from '../../../components/chart'
 
 export default function ChartPage() {
   const {
-    tokenVolumeRankData,
-    tokenPriceRankData,
+    volumeData,
+    priceData,
+    volumeDataLoading,
+    priceDataLoading,
+    volumeDataSuccess,
+    priceDataSuccess
   } = useFetchData()
 
   return (
@@ -14,8 +18,12 @@ export default function ChartPage() {
       <ControlPanel />
       <ChartContainer>
         <Chart
-          volumeData={tokenVolumeRankData ?? []}
-          priceData={tokenPriceRankData ?? []}
+          volumeData={volumeData ?? []}
+          priceData={priceData ?? []}
+          volumeDataLoading={volumeDataLoading}
+          priceDataLoading={priceDataLoading}
+          volumeDataSuccess={volumeDataSuccess}
+          priceDataSuccess={priceDataSuccess}
         />
       </ChartContainer>
     </Wrapper>

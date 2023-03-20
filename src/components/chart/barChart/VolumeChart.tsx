@@ -1,24 +1,29 @@
 import { GetTokenVolumeRankDto } from '../../../redux/api/token/chart/dtos'
-import { XScale, YScale } from '..'
+import { XScaleBand, YScale } from '..'
 
 interface VolumeChartProps {
   data: GetTokenVolumeRankDto[]
   innerHeight: number
-  xScale: XScale
+  xScale: XScaleBand
   yScale: YScale
 }
 
-export default function VolumeChart({ data, xScale, yScale, innerHeight }: VolumeChartProps) {
+export default function VolumeChart({
+  data,
+  xScale,
+  yScale,
+  innerHeight,
+}: VolumeChartProps) {
   return (
     <>
       {data?.map((d) => (
         <rect
           key={d.datetime}
-          x={xScale(d.datetime)}
+          x={xScale(new Date(d.datetime))}
           y={innerHeight - yScale(d.volumeSum)}
-          width={xScale.bandwidth()}
+          width={20}
           height={yScale(d.volumeSum)}
-          fill='#ff6361'
+          fill="#ff6361"
         />
       ))}
     </>

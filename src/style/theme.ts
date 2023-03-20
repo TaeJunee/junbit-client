@@ -23,6 +23,9 @@ const options = {
     ::-webkit-scrollbar-thumb {
       background-color: #e0e0e0;
       border-radius: 12px;
+      &:hover {
+        background-color: #BDBDBD;
+      }
     }
     ::-webkit-scrollbar-track {
       background-color: transparent;

@@ -7,8 +7,8 @@ import useFetchData from './useFetchData'
 import useResize from '../../hooks/useResize'
 
 export default function MainPage() {
-  const tableWrapperRef = useRef<HTMLDivElement>(null)
-  const { width } = useResize(tableWrapperRef)
+  const tableContainerRef = useRef<HTMLDivElement>(null)
+  const { width } = useResize(tableContainerRef)
 
   const {
     datetime,
@@ -29,7 +29,7 @@ export default function MainPage() {
   return (
     <Wrapper>
       <ControlPanel />
-      <TableWrapper className="wrapper-table" ref={tableWrapperRef}>
+      <TableContainer className="wrapper-table" ref={tableContainerRef}>
         <div className="wrapper-inner">
           <TimeInfo>
             <span>
@@ -56,7 +56,7 @@ export default function MainPage() {
             )}
           </div>
         )}
-      </TableWrapper>
+      </TableContainer>
     </Wrapper>
   )
 }
@@ -70,7 +70,7 @@ const Wrapper = styled.div`
     width: 100%;
   }
 `
-const TableWrapper = styled.div`
+const TableContainer = styled.div`
   width: 100%;
   height: calc(100% - 36px);
   padding: 30px;

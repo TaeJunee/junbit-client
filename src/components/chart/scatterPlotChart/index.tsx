@@ -1,4 +1,4 @@
-import { XScale, YScale } from '..'
+import { XScaleTime, YScale } from '..'
 import {
   GetTokenPriceRankDto,
   GetTokenVolumeRankDto,
@@ -11,13 +11,14 @@ import VolumeChart from './VolumeChart'
 
 export interface RankChartProps {
   type: RadioOptionType
+  innerWidth: number
   innerHeight: number
   volumeData: GetTokenVolumeRankDto[]
   priceData: GetTokenPriceRankDto[]
-  xScaleVolumeSum: XScale
+  xScaleVolumeRank: XScaleTime
+  xScalePriceRank: XScaleTime
   yScaleVolumeSumRank: YScale
   yScaleVolumeDiffRateRank: YScale
-  xScalePriceSum: XScale
   yScalePriceSumRank: YScale
   yScalePriceDiffRank: YScale
   yScalePriceDiffRateRank: YScale
@@ -25,30 +26,26 @@ export interface RankChartProps {
 
 export default function ScatterPlotChart({
   type,
+  innerWidth,
   innerHeight,
   volumeData,
   priceData,
-  xScaleVolumeSum,
+  xScaleVolumeRank,
+  xScalePriceRank,
   yScaleVolumeSumRank,
   yScaleVolumeDiffRateRank,
-  xScalePriceSum,
   yScalePriceSumRank,
   yScalePriceDiffRank,
-  yScalePriceDiffRateRank }: RankChartProps) {
-
+  yScalePriceDiffRateRank,
+}: RankChartProps) {
   if (type === 'VOLUME') {
     return (
       <>
-        <AxisBottom
-          innerHeight={innerHeight}
-          xScale={xScaleVolumeSum}
-        />
-        <AxisLeft
-          yScale={yScaleVolumeSumRank}
-        />
+        <AxisBottom innerHeight={innerHeight} xScale={xScaleVolumeRank} />
+        <AxisLeft innerWidth={innerWidth} yScale={yScaleVolumeSumRank} />
         <VolumeChart
           data={volumeData}
-          xScale={xScaleVolumeSum}
+          xScale={xScaleVolumeRank}
           yScale1={yScaleVolumeSumRank}
           yScale2={yScaleVolumeDiffRateRank}
         />
@@ -57,16 +54,11 @@ export default function ScatterPlotChart({
   } else if (type === 'PRICE') {
     return (
       <>
-        <AxisBottom
-          innerHeight={innerHeight}
-          xScale={xScalePriceSum}
-        />
-        <AxisLeft
-          yScale={yScalePriceSumRank}
-        />
+        <AxisBottom innerHeight={innerHeight} xScale={xScalePriceRank} />
+        <AxisLeft innerWidth={innerWidth} yScale={yScalePriceSumRank} />
         <PriceChart
           data={priceData}
-          xScale={xScalePriceSum}
+          xScale={xScalePriceRank}
           yScale1={yScalePriceSumRank}
           yScale2={yScalePriceDiffRank}
           yScale3={yScalePriceDiffRateRank}

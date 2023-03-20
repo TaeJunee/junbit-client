@@ -2,25 +2,24 @@ import { RankChartProps } from '../scatterPlotChart'
 import PriceChart from './PriceChart'
 import VolumeChart from './VolumeChart'
 
-
 export default function LineChart({
   type,
   volumeData,
   priceData,
-  xScaleVolumeSum,
+  xScaleVolumeRank,
+  xScalePriceRank,
   yScaleVolumeSumRank,
   yScaleVolumeDiffRateRank,
-  xScalePriceSum,
   yScalePriceSumRank,
   yScalePriceDiffRank,
-  yScalePriceDiffRateRank }: RankChartProps) {
-
+  yScalePriceDiffRateRank,
+}: RankChartProps) {
   if (type === 'VOLUME') {
     return (
       <>
         <VolumeChart
           data={volumeData}
-          xScale={xScaleVolumeSum}
+          xScale={xScaleVolumeRank}
           yScale1={yScaleVolumeSumRank}
           yScale2={yScaleVolumeDiffRateRank}
         />
@@ -31,7 +30,7 @@ export default function LineChart({
       <>
         <PriceChart
           data={priceData}
-          xScale={xScalePriceSum}
+          xScale={xScalePriceRank}
           yScale1={yScalePriceSumRank}
           yScale2={yScalePriceDiffRank}
           yScale3={yScalePriceDiffRateRank}
