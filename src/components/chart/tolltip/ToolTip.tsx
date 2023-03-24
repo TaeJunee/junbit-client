@@ -1,4 +1,3 @@
-import { useEffect, useRef, useState } from 'react'
 import moment from 'moment'
 import theme from '../../../style/theme'
 import {
@@ -6,14 +5,10 @@ import {
   GetTokenVolumeRankDto,
 } from '../../../redux/api/token/chart/dtos'
 import { XScaleTime, YScale } from '..'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import {
   currentlyCirCleHoverOn,
   currentlyRankHoverOn,
-  currentlyToolTipHoverOn,
-  setCircleHoverOn,
-  setRankHoverOn,
-  setToolTipHoverOn,
 } from '../../../redux/chart/hoverSlice'
 
 interface ToolTipProps {
@@ -39,7 +34,6 @@ export default function ToolTip({
   yScalePriceDiffRank,
   yScalePriceDiffRateRank,
 }: ToolTipProps) {
-  const dispatch = useDispatch()
   const hoveredCircleValue = useSelector(currentlyCirCleHoverOn)
   const hoveredRankValue = useSelector(currentlyRankHoverOn)
 

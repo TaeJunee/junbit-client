@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useLocation, useParams } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import {
   useGetTokenVolumeRankQuery,
@@ -13,8 +13,6 @@ import { getKeyByValue } from '../../../utils/getKey'
 
 export default function useFetchData() {
   const { token_name: tokenEnName } = useParams()
-  const location = useLocation()
-  const tokenKRName = location.state?.tokenName
   const market = getKeyByValue(tokenData, tokenEnName as string)
   const radioOption = useSelector(currentRadioOption)
   const unit = useSelector(currentUnit)

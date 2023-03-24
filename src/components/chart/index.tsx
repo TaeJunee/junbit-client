@@ -17,8 +17,6 @@ import theme from '../../style/theme'
 import { legendItems } from '../../infra/chart/legend'
 import ToolTip from './tolltip/ToolTip'
 import {
-  currentlyBarHoverOn,
-  currentlyCirCleHoverOn,
   currentlyHoverOn,
 } from '../../redux/chart/hoverSlice'
 
