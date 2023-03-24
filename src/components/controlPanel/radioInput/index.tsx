@@ -6,7 +6,7 @@ import {
   setRadioOption,
   currentRadioPriceOption,
   setRadioPriceOption,
-} from '../../../redux/radioOption/radioOptionSlice'
+} from '../../../redux/table/radioOption/radioOptionSlice'
 
 export default function RadioInput() {
   const dispatch = useDispatch()
@@ -160,10 +160,9 @@ const MainLabel = styled.label<{ checked: boolean }>`
   .radio-selector-main {
     min-width: 20px;
     min-height: 20px;
-    border: ${(props) =>
+    border: ${props =>
       props.checked ? null : `0.5px solid ${theme.colors.grey30}`};
-    background-color: ${(props) =>
-      props.checked ? theme.colors.red : 'white'};
+    background-color: ${props => (props.checked ? theme.colors.red : 'white')};
 
     div {
       width: 10px;
@@ -173,20 +172,20 @@ const MainLabel = styled.label<{ checked: boolean }>`
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      background-color: ${(props) => (props.checked ? 'white' : null)};
+      background-color: ${props => (props.checked ? 'white' : null)};
     }
   }
 `
 const SubLabel = styled.label<{ checked: boolean; active: boolean }>`
-  cursor: ${(props) => (props.active ? 'pointer' : 'default')};
+  cursor: ${props => (props.active ? 'pointer' : 'default')};
   gap: 8px;
 
   .radio-selector-sub {
     min-width: 16px;
     min-height: 16px;
-    border: ${(props) =>
+    border: ${props =>
       props.checked ? null : `0.5px solid ${theme.colors.grey30}`};
-    background-color: ${(props) =>
+    background-color: ${props =>
       props.checked && props.active
         ? theme.colors.red
         : props.checked
@@ -205,7 +204,7 @@ const SubLabel = styled.label<{ checked: boolean; active: boolean }>`
     }
   }
   .radio-text-sub {
-    color: ${(props) => (props.active ? '' : theme.colors.grey30)};
+    color: ${props => (props.active ? '' : theme.colors.grey30)};
     font-size: 14px;
   }
 `

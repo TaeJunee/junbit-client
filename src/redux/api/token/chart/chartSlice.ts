@@ -2,7 +2,7 @@ import { apiSlice } from '../../apiSlice'
 import { GetTokenPriceRankDto, GetTokenVolumeRankDto } from './dtos'
 
 export const chartSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getTokenVolumeRank: builder.query<
       { payload: GetTokenVolumeRankDto[] },
       { market: string; unit: UnitType; datetime: string }

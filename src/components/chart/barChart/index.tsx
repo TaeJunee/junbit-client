@@ -1,11 +1,12 @@
 import VolumeChart from './VolumeChart'
 import PriceChart from './PriceChart'
 import { ChartProps, XScaleBand, YScale } from '..'
-import AxisBottom from '../axisBottom/AxisBottom'
-import AxisLeft from '../axisBottom/AxisLeft'
+import AxisBottom from '../axis/AxisBottom'
+import AxisLeft from '../axis/AxisLeft'
 
 interface BarChartProps extends ChartProps {
   type: RadioOptionType
+  hoveredValue: string | null
   innerWidth: number
   innerHeight: number
   xScaleVolumeSum: XScaleBand
@@ -16,6 +17,7 @@ interface BarChartProps extends ChartProps {
 
 export default function BarChart({
   type,
+  hoveredValue,
   innerWidth,
   innerHeight,
   volumeData,
@@ -32,6 +34,7 @@ export default function BarChart({
         <AxisLeft innerWidth={innerWidth} yScale={yScaleVolumeSum} />
         <VolumeChart
           data={volumeData}
+          hoveredValue={hoveredValue}
           innerHeight={innerHeight}
           xScale={xScaleVolumeSum}
           yScale={yScaleVolumeSum}
@@ -45,6 +48,7 @@ export default function BarChart({
         <AxisLeft innerWidth={innerWidth} yScale={yScalePriceSum} />
         <PriceChart
           data={priceData}
+          hoveredValue={hoveredValue}
           innerHeight={innerHeight}
           xScale={xScalePriceSum}
           yScale={yScalePriceSum}

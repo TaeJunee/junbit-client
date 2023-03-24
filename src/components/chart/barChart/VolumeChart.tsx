@@ -3,6 +3,7 @@ import { XScaleBand, YScale } from '..'
 
 interface VolumeChartProps {
   data: GetTokenVolumeRankDto[]
+  hoveredValue: string | null
   innerHeight: number
   xScale: XScaleBand
   yScale: YScale
@@ -16,13 +17,13 @@ export default function VolumeChart({
 }: VolumeChartProps) {
   return (
     <>
-      {data?.map((d) => (
+      {data?.map(d => (
         <rect
           key={d.datetime}
           x={xScale(new Date(d.datetime))}
-          y={innerHeight - yScale(d.volumeSum)}
+          y={yScale(d.volumeSum)}
           width={20}
-          height={yScale(d.volumeSum)}
+          height={innerHeight - yScale(d.volumeSum)}
           fill="#ff6361"
         />
       ))}

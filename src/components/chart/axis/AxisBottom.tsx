@@ -14,7 +14,7 @@ export default function AxisBottom({ innerHeight, xScale }: AxisBottomProps) {
   useEffect(() => {
     const xAxisG = select(xAxisRef.current!)
     const xAxis = axisBottom<any>(xScale)
-    xAxis.tickFormat((d) => moment(d).locale('ko').format('M월DD일 a h시'))
+    xAxis.tickFormat(d => moment(d).locale('ko').format('M월DD일 a h시'))
     xAxisG.call(xAxis)
 
     xAxisG
@@ -24,5 +24,5 @@ export default function AxisBottom({ innerHeight, xScale }: AxisBottomProps) {
       .style('text-anchor', 'end')
   }, [innerHeight, xScale])
 
-  return <g ref={xAxisRef} className='axis axis-bottom' />
+  return <g ref={xAxisRef} className="axis axis-bottom" />
 }

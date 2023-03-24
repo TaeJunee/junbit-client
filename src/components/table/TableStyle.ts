@@ -58,6 +58,6 @@ export const TableBody = styled.div`
   }
 `
 export const UpDownIndicator = styled.span<{ up: boolean; unChanged: boolean }>`
-  color: ${(props) =>
+  color: ${props =>
     !props.unChanged && (props.up ? theme.colors.red : theme.colors.blue)};
 `

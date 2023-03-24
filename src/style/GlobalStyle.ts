@@ -1,23 +1,23 @@
 import { createGlobalStyle } from 'styled-components'
-import NotoSansKRRegular from '../fonts/NotoSansKR-Regular.otf'
-import NotoSansKRBold from '../fonts/NotoSansKR-Bold.otf'
+// import NotoSansKRRegular from '../fonts/NotoSansKR-Regular.otf'
+// import NotoSansKRBold from '../fonts/NotoSansKR-Bold.otf'
 import 'react-calendar/dist/Calendar.css'
 import reset from 'styled-reset'
+// @font-face {
+//   font-family: 'Noto Sans KR';
+//   src: url(${NotoSansKRRegular});
+//   font-weight: 400;
+//   font-style: normal;
+// }
 
+// @font-face {
+//   font-family: 'Noto Sans KR';
+//   src: url(${NotoSansKRBold});
+//   font-weigiht: 500;
+//   font-style: normal;
+// }
 const GlobalStyle = createGlobalStyle`
-  @font-face {
-    font-family: 'Noto Sans KR', sans-serif;
-    src: url(${NotoSansKRRegular});
-    font-weight: 400;
-    font-style: normal;
-  }
 
-  @font-face {
-    font-family: 'Noto Sans KR', sans-serif;
-    src: url(${NotoSansKRBold});
-    font-weigiht: 500;
-    font-style: normal;
-  }
 
   ${reset}
 
@@ -26,22 +26,18 @@ const GlobalStyle = createGlobalStyle`
   }
 
   html {
-    width: 100vw;
-    height: calc(var(--vh, 1vh) * 100);
-    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Noto Sans KR';
     margin:0;
     padding:0;
   }
 
   body {
-    width: 100%;
-    height: 100%;
     margin: 0;
     padding: 0;
 
-    #App {
-      width: 100%;
-      height: 100%;
+    #root {
+      width: 100vw;
+      height: 100vh;
     }
   }
 

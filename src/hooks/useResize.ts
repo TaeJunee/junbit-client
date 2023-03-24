@@ -11,13 +11,17 @@ export default function useResize(ref: React.RefObject<HTMLDivElement>) {
 
   const setOffsetWidth = useCallback(
     debounce(() => {
-    setWidth(ref.current?.offsetWidth)
-  }, 500), [ref])
+      setWidth(ref.current?.offsetWidth)
+    }, 500),
+    [ref]
+  )
 
   const setOffsetHeight = useCallback(
     debounce(() => {
-    setHeight(ref.current?.offsetHeight)
-  }, 500), [ref])
+      setHeight(ref.current?.offsetHeight)
+    }, 500),
+    [ref]
+  )
 
   useEffect(() => {
     window.addEventListener('resize', () => {

@@ -3,14 +3,15 @@ import {
   GetTokenPriceRankDto,
   GetTokenVolumeRankDto,
 } from '../../../redux/api/token/chart/dtos'
-import AxisBottom from '../axisBottom/AxisBottom'
-import AxisLeft from '../axisBottom/AxisLeft'
+import AxisBottom from '../axis/AxisBottom'
+import AxisLeft from '../axis/AxisLeft'
 import PriceChart from './PriceChart'
 
 import VolumeChart from './VolumeChart'
 
 export interface RankChartProps {
   type: RadioOptionType
+  hoveredValue: string | null
   innerWidth: number
   innerHeight: number
   volumeData: GetTokenVolumeRankDto[]
@@ -26,6 +27,7 @@ export interface RankChartProps {
 
 export default function ScatterPlotChart({
   type,
+  hoveredValue,
   innerWidth,
   innerHeight,
   volumeData,
@@ -45,6 +47,7 @@ export default function ScatterPlotChart({
         <AxisLeft innerWidth={innerWidth} yScale={yScaleVolumeSumRank} />
         <VolumeChart
           data={volumeData}
+          hoveredValue={hoveredValue}
           xScale={xScaleVolumeRank}
           yScale1={yScaleVolumeSumRank}
           yScale2={yScaleVolumeDiffRateRank}
@@ -58,6 +61,7 @@ export default function ScatterPlotChart({
         <AxisLeft innerWidth={innerWidth} yScale={yScalePriceSumRank} />
         <PriceChart
           data={priceData}
+          hoveredValue={hoveredValue}
           xScale={xScalePriceRank}
           yScale1={yScalePriceSumRank}
           yScale2={yScalePriceDiffRank}

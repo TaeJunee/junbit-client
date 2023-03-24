@@ -24,7 +24,7 @@ const Button = (props: ButtonProps) => {
 export default Button
 
 const Wrapper = styled.div<{ buttonType: ButtonType }>`
-  ${(props) =>
+  ${props =>
     props.buttonType === 'FILLED'
       ? css`
           background: ${theme.colors.red};
@@ -38,7 +38,7 @@ const Wrapper = styled.div<{ buttonType: ButtonType }>`
     width: 100%;
     height: 100%;
     background: none;
-    color: ${(props) =>
+    color: ${props =>
       props.buttonType === 'OUTLINE' ? theme.colors.grey90 : 'white'};
     border: none;
   }

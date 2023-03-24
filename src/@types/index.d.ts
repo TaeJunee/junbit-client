@@ -24,8 +24,21 @@ declare type RankOption =
 declare module 'types' {
   interface TokenData {
     [key: string]: {
-      kr_name: string
-      en_name: string
+      korean_name: string
+      english_name: string
     }
+  }
+
+  interface LegendItems {
+    VOLUME: {
+      text: string
+      color: string
+      value: string
+    }[]
+    PRICE: {
+      text: string
+      color: string
+      value: string
+    }[]
   }
 }

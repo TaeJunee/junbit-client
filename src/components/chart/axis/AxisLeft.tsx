@@ -18,14 +18,13 @@ export default function AxisLeft({ innerWidth, yScale }: AxisLeftProps) {
   }, [yScale])
 
   return (
-    <g className='axis-left-group'>
-      <g ref={yAxisRef} className='axis axis-left'/>
+    <g className="axis-left-group">
+      <g ref={yAxisRef} className="axis axis-left" />
       {yScale.ticks().map(tickValue => (
         <g key={tickValue} transform={`translate(0, ${yScale(tickValue)})`}>
           <line x2={innerWidth} stroke={theme.colors.grey30} />
         </g>
-      ))
-      }
+      ))}
     </g>
   )
 }

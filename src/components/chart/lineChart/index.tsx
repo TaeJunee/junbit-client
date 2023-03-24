@@ -4,6 +4,7 @@ import VolumeChart from './VolumeChart'
 
 export default function LineChart({
   type,
+  hoveredValue,
   volumeData,
   priceData,
   xScaleVolumeRank,
@@ -19,6 +20,7 @@ export default function LineChart({
       <>
         <VolumeChart
           data={volumeData}
+          hoveredValue={hoveredValue}
           xScale={xScaleVolumeRank}
           yScale1={yScaleVolumeSumRank}
           yScale2={yScaleVolumeDiffRateRank}
@@ -30,6 +32,7 @@ export default function LineChart({
       <>
         <PriceChart
           data={priceData}
+          hoveredValue={hoveredValue}
           xScale={xScalePriceRank}
           yScale1={yScalePriceSumRank}
           yScale2={yScalePriceDiffRank}

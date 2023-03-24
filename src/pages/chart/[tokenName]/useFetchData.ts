@@ -5,9 +5,9 @@ import {
   useGetTokenVolumeRankQuery,
   useGetTokenPriceRankQuery,
 } from '../../../redux/api/token/chart/chartSlice'
-import { currentRadioOption } from '../../../redux/radioOption/radioOptionSlice'
-import { currentUnit } from '../../../redux/unit/unitSlice'
-import { currentDatetime } from '../../../redux/datetime/datetimeSlice'
+import { currentRadioOption } from '../../../redux/table/radioOption/radioOptionSlice'
+import { currentUnit } from '../../../redux/table/unit/unitSlice'
+import { currentDatetime } from '../../../redux/table/datetime/datetimeSlice'
 import { tokenData } from '../../../infra/token'
 import { getKeyByValue } from '../../../utils/getKey'
 
@@ -33,13 +33,21 @@ export default function useFetchData() {
     }
   }, [radioOption])
 
-  const { data: tokenVolumeData, isLoading: isTokenVolumeDataLoading, isSuccess: isTokenVolumeDataSuccess } = useGetTokenVolumeRankQuery(
+  const {
+    data: tokenVolumeData,
+    isLoading: isTokenVolumeDataLoading,
+    isSuccess: isTokenVolumeDataSuccess,
+  } = useGetTokenVolumeRankQuery(
     { market: market as string, unit: unit.value, datetime },
-    { skip: volumeSkip },
+    { skip: volumeSkip }
   )
-  const { data: tokenPriceData, isLoading: isTokenPriceDataLoading, isSuccess: isTokenPriceDataSuccess } = useGetTokenPriceRankQuery(
+  const {
+    data: tokenPriceData,
+    isLoading: isTokenPriceDataLoading,
+    isSuccess: isTokenPriceDataSuccess,
+  } = useGetTokenPriceRankQuery(
     { market: market as string, unit: unit.value, datetime },
-    { skip: priceSkip },
+    { skip: priceSkip }
   )
 
   return {

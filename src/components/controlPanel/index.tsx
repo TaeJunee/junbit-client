@@ -31,8 +31,7 @@ export default ControlPanel
 
 const Wrapper = styled.div<{ isOpen: boolean }>`
   position: relative;
-  width: ${(props) => (props.isOpen ? '320px' : '0px')};
-  height: 100%;
+  width: ${props => (props.isOpen ? '320px' : '0px')};
   background: white;
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
   transition: all 0.3s ease-in-out;
@@ -41,7 +40,7 @@ const Wrapper = styled.div<{ isOpen: boolean }>`
 const TogglePanelButton = styled.div<{ isOpen: boolean }>`
   position: absolute;
   top: 5px;
-  right: ${(props) => (props.isOpen ? '0px' : '-40px')};
+  right: ${props => (props.isOpen ? '0px' : '-40px')};
   width: 40px;
   height: 40px;
   padding: 12px;
@@ -49,7 +48,7 @@ const TogglePanelButton = styled.div<{ isOpen: boolean }>`
   box-shadow: 1px 2px 4px rgba(0, 0, 0, 0.2);
   border-radius: 0 12px 12px 0;
   cursor: pointer;
-  transform: ${(props) => (props.isOpen ? 'rotateY(180deg)' : '')};
+  transform: ${props => (props.isOpen ? 'rotateY(180deg)' : '')};
   transition: all 0.3s ease-in-out;
 
   img {
@@ -59,7 +58,7 @@ const TogglePanelButton = styled.div<{ isOpen: boolean }>`
 `
 const ControllerWrapper = styled.div<{ isOpen: boolean }>`
   padding: 0 30px;
-  display: ${(props) => (props.isOpen ? 'flex' : 'none')};
+  display: ${props => (props.isOpen ? 'flex' : 'none')};
   flex-direction: column;
 
   .ic-arrow {

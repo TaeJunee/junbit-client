@@ -13,9 +13,9 @@ export default function VolumeTable({ data }: VolumeTableProps) {
   const navigate = useNavigate()
   const cloneData = data && [...data]
   const sortedCloneData = cloneData?.sort(
-    (a, b) => a.volumeDiffRateRank - b.volumeDiffRateRank,
+    (a, b) => a.volumeDiffRateRank - b.volumeDiffRateRank
   )
-
+  console.log(data)
   return (
     <Wrapper>
       <TableHead>
@@ -77,15 +77,15 @@ export default function VolumeTable({ data }: VolumeTableProps) {
               onClick={() =>
                 navigate(
                   `/chart/${
-                    tokenData[value.market as keyof TokenData].en_name
+                    tokenData[value.market as keyof TokenData].english_name
                   }`,
                   {
                     state: {
                       tokenName:
-                        tokenData[value.market as keyof TokenData].kr_name,
+                        tokenData[value.market as keyof TokenData].korean_name,
                       market: value.market,
                     },
-                  },
+                  }
                 )
               }
             >
@@ -94,7 +94,7 @@ export default function VolumeTable({ data }: VolumeTableProps) {
               </div>
               <div className="name">
                 <span>
-                  {tokenData[value.market as keyof TokenData].kr_name}
+                  {tokenData[value.market as keyof TokenData].korean_name}
                 </span>
               </div>
               <div className="rank-up-or-down">

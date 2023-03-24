@@ -78,14 +78,14 @@ export default function PriceTable({ type, data }: PriceTableProps) {
               onClick={() =>
                 navigate(
                   `/chart/${
-                    tokenData[value.market as keyof TokenData].en_name
+                    tokenData[value.market as keyof TokenData].english_name
                   }`,
                   {
                     state: {
                       tokenName:
-                        tokenData[value.market as keyof TokenData].kr_name,
+                        tokenData[value.market as keyof TokenData].korean_name,
                     },
-                  },
+                  }
                 )
               }
             >
@@ -94,7 +94,7 @@ export default function PriceTable({ type, data }: PriceTableProps) {
               </div>
               <div className="name">
                 <span>
-                  {tokenData[value.market as keyof TokenData].kr_name}
+                  {tokenData[value.market as keyof TokenData].korean_name}
                 </span>
               </div>
               <div className="rank-up-or-down">

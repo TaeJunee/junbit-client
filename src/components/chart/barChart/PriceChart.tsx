@@ -1,10 +1,11 @@
 import { GetTokenPriceRankDto } from '../../../redux/api/token/chart/dtos'
-import { XScaleBand, YScale } from '..'
+import { XScaleTime, YScale } from '..'
 
 interface PriceChartProps {
   data: GetTokenPriceRankDto[]
+  hoveredValue: string | null
   innerHeight: number
-  xScale: XScaleBand
+  xScale: XScaleTime
   yScale: YScale
 }
 
@@ -16,13 +17,13 @@ export default function PriceChart({
 }: PriceChartProps) {
   return (
     <>
-      {data?.map((d) => (
+      {data?.map(d => (
         <rect
           key={d.datetime}
           x={xScale(new Date(d.datetime))}
-          y={innerHeight - yScale(d.priceSum)}
+          y={yScale(d.priceSum)}
           width={20}
-          height={yScale(d.priceSum)}
+          height={innerHeight - yScale(d.priceSum)}
           fill="#ff6361"
         />
       ))}

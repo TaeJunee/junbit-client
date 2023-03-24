@@ -9,5 +9,5 @@ export const apiSlice = createApi({
     'VolumeRankChart',
     'PriceRankChart',
   ],
-  endpoints: (builder) => ({}),
+  endpoints: builder => ({}),
 })

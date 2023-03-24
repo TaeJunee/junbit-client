@@ -6,7 +6,7 @@ import {
   isOpenUnitOption,
   openUnitOption,
   setUnitData,
-} from '../../../redux/unit/unitSlice'
+} from '../../../redux/table/unit/unitSlice'
 
 export default function useUnit() {
   const dispatch = useDispatch()
@@ -29,7 +29,7 @@ export default function useUnit() {
         dispatch(closeUnitOption())
       }
     },
-    [isOpenUnit, dispatch],
+    [isOpenUnit, dispatch]
   )
 
   const handleSetUnit = (value: UnitType | number, displayText: string) => {
@@ -37,11 +37,11 @@ export default function useUnit() {
   }
 
   useEffect(() => {
-    window.addEventListener('click', (e) => {
+    window.addEventListener('click', e => {
       handleCloseUnitOption(e)
     })
     return () => {
-      window.removeEventListener('click', (e) => {
+      window.removeEventListener('click', e => {
         handleCloseUnitOption(e)
       })
     }

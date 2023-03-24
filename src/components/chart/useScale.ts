@@ -1,4 +1,4 @@
-import { max, min, scaleBand, scaleLinear, scaleTime } from 'd3'
+import { max, min, scaleLinear, scaleTime } from 'd3'
 import {
   GetTokenPriceRankDto,
   GetTokenVolumeRankDto,
@@ -12,43 +12,38 @@ export default function useScale(
   lineChartInnerHeight: number
 ) {
   const xScaleVolumeSum = scaleTime()
-  .domain([
-    min(volumeData, d => new Date(d.datetime)) as Date,
-    max(volumeData, d => new Date(d.datetime)) as Date
-  ])
-  .range([0, innerWidth])
-  .nice()
-
+    .domain([
+      min(volumeData, d => new Date(d.datetime)) as Date,
+      max(volumeData, d => new Date(d.datetime)) as Date,
+    ])
+    .range([0, innerWidth])
   const xScaleVolumeRank = scaleTime()
     .domain([
       min(volumeData, d => new Date(d.datetime)) as Date,
-      max(volumeData, d => new Date(d.datetime)) as Date
+      max(volumeData, d => new Date(d.datetime)) as Date,
     ])
     .range([0, innerWidth])
-    .nice()
   const xScalePriceSum = scaleTime()
-  .domain([
-    min(priceData, d => new Date(d.datetime)) as Date,
-    max(priceData, d => new Date(d.datetime)) as Date
-  ])
-  .range([0, innerWidth])
-  .nice()
-
+    .domain([
+      min(priceData, d => new Date(d.datetime)) as Date,
+      max(priceData, d => new Date(d.datetime)) as Date,
+    ])
+    .range([0, innerWidth])
   const xScalePriceRank = scaleTime()
     .domain([
       min(priceData, d => new Date(d.datetime)) as Date,
-      max(priceData, d => new Date(d.datetime)) as Date
+      max(priceData, d => new Date(d.datetime)) as Date,
     ])
     .range([0, innerWidth])
-    .nice()
-    
   const yScaleVolumeSum = scaleLinear()
-    .domain([0, max(volumeData, (d) => d.volumeSum) as number])
+    .domain([0, max(volumeData, d => d.volumeSum) as number])
     .range([barChartInnerHeight, 0])
+    .nice()
 
   const yScalePriceSum = scaleLinear()
-    .domain([0, max(priceData, (d) => d.priceSum) as number])
+    .domain([0, max(priceData, d => d.priceSum) as number])
     .range([barChartInnerHeight, 0])
+    .nice()
 
   const yScaleVolumeSumRank = scaleLinear()
     .domain([1, 115])

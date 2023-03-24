@@ -46,7 +46,7 @@ export default function MainPage() {
             <TimeInfo>
               <span>
                 {`${new Date(
-                  resetDatetime(datetime, unit.value),
+                  resetDatetime(datetime, unit.value)
                 ).toLocaleString()}: ${unit.value}시간 단위`}
               </span>
             </TimeInfo>

@@ -10,7 +10,7 @@ export default function ChartPage() {
     volumeDataLoading,
     priceDataLoading,
     volumeDataSuccess,
-    priceDataSuccess
+    priceDataSuccess,
   } = useFetchData()
 
   return (
