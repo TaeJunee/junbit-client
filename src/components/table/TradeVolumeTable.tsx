@@ -15,7 +15,7 @@ export default function VolumeTable({ data }: VolumeTableProps) {
   const sortedCloneData = cloneData?.sort(
     (a, b) => a.volumeDiffRateRank - b.volumeDiffRateRank
   )
-  console.log(data)
+
   return (
     <Wrapper>
       <TableHead>
