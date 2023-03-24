@@ -16,9 +16,7 @@ import useResize from '../../hooks/useResize'
 import theme from '../../style/theme'
 import { legendItems } from '../../infra/chart/legend'
 import ToolTip from './tolltip/ToolTip'
-import {
-  currentlyHoverOn,
-} from '../../redux/chart/hoverSlice'
+import { currentlyHoverOn } from '../../redux/chart/hoverSlice'
 
 export type XScaleBand = ScaleTime<number, number, never>
 export type XScaleTime = ScaleTime<number, number, never>

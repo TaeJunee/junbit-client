@@ -12,7 +12,7 @@ export default function ChartPage() {
     volumeDataSuccess,
     priceDataSuccess,
   } = useFetchData()
-
+  console.log(volumeData)
   return (
     <Wrapper>
       <ControlPanel />
