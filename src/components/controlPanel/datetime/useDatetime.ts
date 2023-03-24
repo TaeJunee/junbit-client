@@ -11,7 +11,7 @@ import {
   openTimeOption,
   currentTime,
   setTime,
-} from '../../../redux/datetime/datetimeSlice'
+} from '../../../redux/table/datetime/datetimeSlice'
 export default function useDatetime() {
   const dispatch = useDispatch()
   // const [openTimeOption, setOpenTimeOption] = useState(false)
@@ -37,7 +37,7 @@ export default function useDatetime() {
         dispatch(closeCalendar())
       }
     },
-    [isOpenCal, dispatch],
+    [isOpenCal, dispatch]
   )
 
   const handleSetDate = (e: Date) => {
@@ -66,19 +66,19 @@ export default function useDatetime() {
         dispatch(closeTimeOption())
       }
     },
-    [isOpenTimeOpt, dispatch],
+    [isOpenTimeOpt, dispatch]
   )
 
   const handleSetTime = (value: number, displayText: string) => {
     dispatch(setTime({ value, displayText }))
   }
   useEffect(() => {
-    window.addEventListener('click', (e) => {
+    window.addEventListener('click', e => {
       handleCloseCalendar(e)
       handleCloseTimeOption(e)
     })
     return () => {
-      window.removeEventListener('click', (e) => {
+      window.removeEventListener('click', e => {
         handleCloseCalendar(e)
         handleCloseTimeOption(e)
       })

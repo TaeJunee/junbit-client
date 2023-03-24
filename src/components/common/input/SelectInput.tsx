@@ -21,7 +21,7 @@ interface SelectInputProps {
 const SelectInput = forwardRef<HTMLDivElement, SelectInputProps>(
   (
     { className, type, isOpen, defaultText, optionList, onClick, onClickSet },
-    ref,
+    ref
   ) => {
     return (
       <Wrapper
@@ -54,15 +54,15 @@ const SelectInput = forwardRef<HTMLDivElement, SelectInputProps>(
         )}
       </Wrapper>
     )
-  },
+  }
 )
 
 export default SelectInput
 
 const Wrapper = styled.div<{ type: string; isOpen: boolean }>`
   width: 100%;
-  height: ${(props) => (props.type === 'TIME' ? '50%' : '50px')};
-  ${(props) =>
+  height: ${props => (props.type === 'TIME' ? '50%' : '50px')};
+  ${props =>
     props.type === 'TIME'
       ? css``
       : css`
@@ -72,7 +72,6 @@ const Wrapper = styled.div<{ type: string; isOpen: boolean }>`
   position: relative;
   cursor: pointer;
   .control-panel__unit-option {
-    transform: ${(props) =>
-      props.isOpen ? 'rotate(90deg)' : 'rotate(-90deg)'};
+    transform: ${props => (props.isOpen ? 'rotate(90deg)' : 'rotate(-90deg)')};
   }
 `

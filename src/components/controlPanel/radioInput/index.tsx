@@ -1,4 +1,4 @@
-import styled, { css } from 'styled-components'
+import styled from 'styled-components'
 import theme from '../../../style/theme'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -6,7 +6,7 @@ import {
   setRadioOption,
   currentRadioPriceOption,
   setRadioPriceOption,
-} from '../../../redux/radioOption/radioOptionSlice'
+} from '../../../redux/table/radioOption/radioOptionSlice'
 
 export default function RadioInput() {
   const dispatch = useDispatch()
@@ -18,7 +18,7 @@ export default function RadioInput() {
       <div className="control-panel__radio-wrapper">
         <MainLabel
           htmlFor="trade-volume"
-          className='label label-main'
+          className="label label-main"
           checked={radioOption === 'VOLUME'}
           onClick={() => dispatch(setRadioOption('VOLUME'))}
         >
@@ -30,7 +30,7 @@ export default function RadioInput() {
         </MainLabel>
         <MainLabel
           htmlFor="trade-price"
-          className='label label-main'
+          className="label label-main"
           checked={radioOption === 'PRICE'}
           onClick={() => dispatch(setRadioOption('PRICE'))}
         >
@@ -41,57 +41,57 @@ export default function RadioInput() {
           <span className="radio-text">거래량(금액)</span>
         </MainLabel>
       </div>
-      <div className='control-panel__select-detail'>
-        <div
-          className="control-panel__select-detail__inner-wrapper control-panel__select-detail__volume"
-        >
+      <div className="control-panel__select-detail">
+        <div className="control-panel__select-detail__inner-wrapper control-panel__select-detail__volume">
           <div className="line"></div>
           <div>
             <SubLabel
               htmlFor="volume-diff-rate"
-              className='label label-sub'
+              className="label label-sub"
               checked
-              active={radioOption === 'VOLUME'} 
+              active={radioOption === 'VOLUME'}
             >
               <input id="volume-diff-rate" type="radio" value="DIFF_RATE" />
               <span className="radio-selector radio-selector-sub volume-diff-rate">
                 <div></div>
               </span>
-              <span className="radio-text radio-text-sub">변화율 보기</span>
+              <span className="radio-text radio-text-sub">변화율</span>
             </SubLabel>
           </div>
         </div>
-        <div
-          className="control-panel__select-detail__inner-wrapper control-panel__select-detail__price"
-
-        >
+        <div className="control-panel__select-detail__inner-wrapper control-panel__select-detail__price">
           <div className="line"></div>
           <div>
             <SubLabel
               htmlFor="price-diff"
-              className='label label-sub'
+              className="label label-sub"
               checked={radioPriceOption === 'DIFF'}
               active={radioOption === 'PRICE'}
-              onClick={() => radioOption === 'PRICE' && dispatch(setRadioPriceOption('DIFF'))}
+              onClick={() =>
+                radioOption === 'PRICE' && dispatch(setRadioPriceOption('DIFF'))
+              }
             >
               <input id="price-diff" type="radio" value="DIFF" />
               <span className="radio-selector radio-selector-sub price-diff">
                 <div></div>
               </span>
-              <span className="radio-text radio-text-sub">변화량 보기</span>
+              <span className="radio-text radio-text-sub">변화량</span>
             </SubLabel>
             <SubLabel
               htmlFor="price-diff-rate"
-              className='label label-sub'
+              className="label label-sub"
               checked={radioPriceOption === 'DIFF_RATE'}
               active={radioOption === 'PRICE'}
-              onClick={() => radioOption === 'PRICE' && dispatch(setRadioPriceOption('DIFF_RATE'))}
+              onClick={() =>
+                radioOption === 'PRICE' &&
+                dispatch(setRadioPriceOption('DIFF_RATE'))
+              }
             >
               <input id="price-diff-rate" type="radio" value="DIFF_RATE" />
               <span className="radio-selector radio-selector-sub price-diff-rate">
                 <div></div>
-                </span>
-              <span className="radio-text radio-text-sub">변화율 보기</span>
+              </span>
+              <span className="radio-text radio-text-sub">변화율</span>
             </SubLabel>
           </div>
         </div>
@@ -120,7 +120,7 @@ const Wrapper = styled.div`
     position: relative;
     display: flex;
     align-items: center;
-    
+
     input {
       display: none;
       position: absolute;
@@ -140,7 +140,7 @@ const Wrapper = styled.div`
     display: flex;
     justify-content: flex-end;
     gap: 8px;
-  
+
     label:first-child {
       margin-bottom: 10px;
     }
@@ -160,9 +160,9 @@ const MainLabel = styled.label<{ checked: boolean }>`
   .radio-selector-main {
     min-width: 20px;
     min-height: 20px;
-    border: ${(props) =>
+    border: ${props =>
       props.checked ? null : `0.5px solid ${theme.colors.grey30}`};
-    background-color: ${(props) => (props.checked ? theme.colors.red : 'white')};
+    background-color: ${props => (props.checked ? theme.colors.red : 'white')};
 
     div {
       width: 10px;
@@ -172,21 +172,26 @@ const MainLabel = styled.label<{ checked: boolean }>`
       left: 50%;
       transform: translate(-50%, -50%);
       border-radius: 50%;
-      background-color: ${(props) => (props.checked ? 'white' : null)};
+      background-color: ${props => (props.checked ? 'white' : null)};
     }
   }
 `
-const SubLabel = styled.label<{ checked: boolean, active: boolean }>`
-  cursor: ${props => props.active ? 'pointer' : 'default'};
+const SubLabel = styled.label<{ checked: boolean; active: boolean }>`
+  cursor: ${props => (props.active ? 'pointer' : 'default')};
   gap: 8px;
 
   .radio-selector-sub {
     min-width: 16px;
     min-height: 16px;
-    border: ${(props) =>
+    border: ${props =>
       props.checked ? null : `0.5px solid ${theme.colors.grey30}`};
-    background-color: ${(props) => (props.checked && props.active ? theme.colors.red : props.checked ? theme.colors.grey30: 'white')};
-    
+    background-color: ${props =>
+      props.checked && props.active
+        ? theme.colors.red
+        : props.checked
+        ? theme.colors.grey30
+        : 'white'};
+
     div {
       width: 8px;
       height: 8px;
@@ -199,7 +204,7 @@ const SubLabel = styled.label<{ checked: boolean, active: boolean }>`
     }
   }
   .radio-text-sub {
-    color: ${props => props.active ? '' : theme.colors.grey30};
+    color: ${props => (props.active ? '' : theme.colors.grey30)};
     font-size: 14px;
   }
 `

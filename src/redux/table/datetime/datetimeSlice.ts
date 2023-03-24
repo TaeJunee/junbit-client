@@ -28,7 +28,7 @@ export const datetimeSlice = createSlice({
       date.getFullYear(),
       date.getMonth(),
       date.getDate(),
-      date.getHours() - 1,
+      date.getHours() - 1
     ).toISOString(),
   } as InitialState,
   reducers: {
@@ -41,19 +41,19 @@ export const datetimeSlice = createSlice({
     setTime: (state, action) => {
       state.time = { ...state.time, ...action.payload }
     },
-    openCalendar: (state) => {
+    openCalendar: state => {
       state.isOpenCalendar = true
     },
-    closeCalendar: (state) => {
+    closeCalendar: state => {
       state.isOpenCalendar = false
     },
-    openTimeOption: (state) => {
+    openTimeOption: state => {
       state.isOpenTimeOption = true
     },
-    closeTimeOption: (state) => {
+    closeTimeOption: state => {
       state.isOpenTimeOption = false
     },
-    reset: (state) => {
+    reset: state => {
       state.value = ''
     },
   },

@@ -21,10 +21,10 @@ export const unitSlice = createSlice({
     setUnitData: (state, action) => {
       state.unit = { ...state.unit, ...action.payload }
     },
-    openUnitOption: (state) => {
+    openUnitOption: state => {
       state.isOpenUnitOption = true
     },
-    closeUnitOption: (state) => {
+    closeUnitOption: state => {
       state.isOpenUnitOption = false
     },
   },

@@ -7,8 +7,8 @@ import {
   currentDatetime,
   currentTime,
   setDatetime,
-} from '../../redux/datetime/datetimeSlice'
-import { currentUnit, setUnitData } from '../../redux/unit/unitSlice'
+} from '../../redux/table/datetime/datetimeSlice'
+import { currentUnit, setUnitData } from '../../redux/table/unit/unitSlice'
 
 export default function useControlPanel() {
   const dispatch = useDispatch()
@@ -31,7 +31,7 @@ export default function useControlPanel() {
       date.getFullYear(),
       date.getMonth(),
       date.getDate(),
-      time.value,
+      time.value
     ).toISOString()
 
     dispatch(setDatetime(ISODatetime))

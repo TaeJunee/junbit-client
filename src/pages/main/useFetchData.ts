@@ -1,9 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useGetTradeVolumeRankQuery } from '../../redux/api/token/tradeVolume/tradeVolumeSlice'
-import { currentDatetime } from '../../redux/datetime/datetimeSlice'
-import { currentUnit } from '../../redux/unit/unitSlice'
-import { currentRadioOption, currentRadioPriceOption } from '../../redux/radioOption/radioOptionSlice'
+import { currentDatetime } from '../../redux/table/datetime/datetimeSlice'
+import { currentUnit } from '../../redux/table/unit/unitSlice'
+import {
+  currentRadioOption,
+  currentRadioPriceOption,
+} from '../../redux/table/radioOption/radioOptionSlice'
 import { useGetTradePriceRankQuery } from '../../redux/api/token/tradePrice/tradePriceSlice'
 
 export default function useFetchData() {
@@ -30,28 +33,29 @@ export default function useFetchData() {
       date.getFullYear(),
       date.getMonth(),
       date.getDate(),
-      date.getHours() - unit,
+      date.getHours() - unit
     ).toISOString()
   }
 
-  const { data: volumeData, isLoading: isVolumeDataLoading } = useGetTradeVolumeRankQuery(
-    { unit: unit.value, datetime },
-    { refetchOnMountOrArgChange: false, skip: volumeSkip },
-  )
+  const { data: volumeData, isLoading: isVolumeDataLoading } =
+    useGetTradeVolumeRankQuery(
+      { unit: unit.value, datetime },
+      { refetchOnMountOrArgChange: false, skip: volumeSkip }
+    )
   const { data: prevVolumeData, isLoading: isPrevVolumeDataLoading } =
     useGetTradeVolumeRankQuery(
       { unit: unit.value, datetime: resetDatetime(datetime, unit.value) },
-      { refetchOnMountOrArgChange: false, skip: volumeSkip },
+      { refetchOnMountOrArgChange: false, skip: volumeSkip }
     )
   const { data: priceData, isLoading: isPriceDataLoading } =
     useGetTradePriceRankQuery(
       { unit: unit.value, datetime },
-      { refetchOnMountOrArgChange: false, skip: priceSkip },
+      { refetchOnMountOrArgChange: false, skip: priceSkip }
     )
   const { data: prevPriceData, isLoading: isPrevPriceDataLoading } =
     useGetTradePriceRankQuery(
       { unit: unit.value, datetime: resetDatetime(datetime, unit.value) },
-      { refetchOnMountOrArgChange: false, skip: priceSkip },
+      { refetchOnMountOrArgChange: false, skip: priceSkip }
     )
 
   return {

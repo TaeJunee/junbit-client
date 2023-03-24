@@ -6,6 +6,7 @@ const colors = {
   carrot: '#FF8B3A',
   red: '#F22D50',
   blue: '#03A9F4',
+  green: '#3DD666',
   grey90: '#323232',
   grey70: '#616161',
   grey50: '#9E9E9E',
@@ -23,6 +24,9 @@ const options = {
     ::-webkit-scrollbar-thumb {
       background-color: #e0e0e0;
       border-radius: 12px;
+      &:hover {
+        background-color: #bdbdbd;
+      }
     }
     ::-webkit-scrollbar-track {
       background-color: transparent;

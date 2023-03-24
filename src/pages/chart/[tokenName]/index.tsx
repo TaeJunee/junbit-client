@@ -1,13 +1,31 @@
-import { useLocation, useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import ControlPanel from '../../../components/controlPanel'
+import useFetchData from './useFetchData'
+import Chart from '../../../components/chart'
 
 export default function ChartPage() {
-  const location = useLocation()
-  const tokenKRName = location.state?.tokenName
-  const { token_name } = useParams()
+  const {
+    volumeData,
+    priceData,
+    volumeDataLoading,
+    priceDataLoading,
+    volumeDataSuccess,
+    priceDataSuccess,
+  } = useFetchData()
+
   return (
     <Wrapper>
-      {token_name} {tokenKRName} 차트 페이지입니다
+      <ControlPanel />
+      <ChartContainer>
+        <Chart
+          volumeData={volumeData ?? []}
+          priceData={priceData ?? []}
+          volumeDataLoading={volumeDataLoading}
+          priceDataLoading={priceDataLoading}
+          volumeDataSuccess={volumeDataSuccess}
+          priceDataSuccess={priceDataSuccess}
+        />
+      </ChartContainer>
     </Wrapper>
   )
 }
@@ -15,4 +33,15 @@ export default function ChartPage() {
 const Wrapper = styled.div`
   width: 100%;
   height: calc(100% - 80px);
+  display: flex;
+
+  .wrapper-inner {
+    width: 100%;
+  }
+`
+const ChartContainer = styled.div`
+  width: 100%;
+  height: calc(100% - 36px);
+  padding: 30px;
+  gap: 20px;
 `

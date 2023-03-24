@@ -1,9 +1,10 @@
+import { GetTradePriceRankDto } from './dtos'
 import { apiSlice } from '../../apiSlice'
 
 export const tradePriceRankSlice = apiSlice.injectEndpoints({
-  endpoints: (builder) => ({
+  endpoints: builder => ({
     getTradePriceRank: builder.query<
-      { payload: TradePriceRankDto[] },
+      { payload: GetTradePriceRankDto[] },
       { unit: UnitType; datetime: string }
     >({
       query: ({ unit, datetime }) => ({

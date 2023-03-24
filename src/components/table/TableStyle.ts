@@ -1,5 +1,5 @@
-import styled from "styled-components";
-import theme from "../../style/theme";
+import styled from 'styled-components'
+import theme from '../../style/theme'
 
 export const TableHead = styled.div`
   width: 100%;
@@ -55,10 +55,9 @@ export const TableBody = styled.div`
         text-align: center;
       }
     }
-
   }
 `
 export const UpDownIndicator = styled.span<{ up: boolean; unChanged: boolean }>`
-  color: ${(props) =>
+  color: ${props =>
     !props.unChanged && (props.up ? theme.colors.red : theme.colors.blue)};
 `
