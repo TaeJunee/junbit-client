@@ -2,16 +2,14 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   isOpenCalendar,
-  openCalendar,
-  closeCalendar,
+  toggleCalendar,
   currentDate,
   setDateValue,
-  closeTimeOption,
+  toggleTimeOption,
   isOpenTimeOption,
-  openTimeOption,
   currentTime,
   setTime,
-} from '../../../redux/table/datetime/datetimeSlice'
+} from '../../../redux/controlPanel/datetime/datetimeSlice'
 export default function useDatetime() {
   const dispatch = useDispatch()
   // const [openTimeOption, setOpenTimeOption] = useState(false)
@@ -26,15 +24,15 @@ export default function useDatetime() {
 
   const handleOpenCalendar = (e: React.MouseEvent) => {
     e.stopPropagation()
-    dispatch(closeTimeOption())
-    dispatch(openCalendar())
+    dispatch(toggleTimeOption(false))
+    dispatch(toggleCalendar(true))
   }
 
   const handleCloseCalendar = useCallback(
     (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (isOpenCal && !calendarRef.current?.contains(target)) {
-        dispatch(closeCalendar())
+        dispatch(toggleCalendar(true))
       }
     },
     [isOpenCal, dispatch]
@@ -42,28 +40,23 @@ export default function useDatetime() {
 
   const handleSetDate = (e: Date) => {
     dispatch(setDateValue(e.toISOString()))
-    dispatch(closeCalendar())
+    dispatch(toggleCalendar(false))
   }
 
   const handleClickCloseCalendar = (e: React.MouseEvent) => {
     e.stopPropagation()
-    dispatch(closeCalendar())
+    dispatch(toggleCalendar(false))
   }
 
   const handleToggleTimeOption = () => {
-    if (!isOpenTimeOpt) {
-      dispatch(openTimeOption())
-      return
-    }
-
-    dispatch(closeTimeOption())
+    dispatch(toggleTimeOption(!isOpenTimeOpt))
   }
 
   const handleCloseTimeOption = useCallback(
     (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (isOpenTimeOpt && !timeOptionRef.current?.contains(target)) {
-        dispatch(closeTimeOption())
+        dispatch(toggleTimeOption(false))
       }
     },
     [isOpenTimeOpt, dispatch]

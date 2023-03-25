@@ -6,7 +6,7 @@ import {
   setRadioOption,
   currentRadioPriceOption,
   setRadioPriceOption,
-} from '../../../redux/table/radioOption/radioOptionSlice'
+} from '../../../redux/controlPanel/radioOption/radioOptionSlice'
 
 export default function RadioInput() {
   const dispatch = useDispatch()

@@ -1,63 +1,89 @@
 import { line } from 'd3'
-import { XScaleTime, YScale } from '..'
+import { XScaleBand, YScale } from '..'
 import { GetTokenVolumeRankDto } from '../../../redux/api/token/chart/dtos'
-import { useDispatch } from 'react-redux'
-import { setHoverOn } from '../../../redux/chart/hoverSlice'
+import { useDispatch, useSelector } from 'react-redux'
+import { currentlyHoverOn, setHoverOn } from '../../../redux/chart/chartSlice'
 
 interface VolumeChartProps {
+  subType: string
   data: GetTokenVolumeRankDto[]
-  hoveredValue: string | null
-  xScale: XScaleTime
-  yScale1: YScale
-  yScale2: YScale
+  xScale: XScaleBand
+  yScale1?: YScale
+  yScale2?: YScale
+  yScale3?: YScale
 }
 
 export default function VolumeChart({
+  subType,
   data,
-  hoveredValue,
   xScale,
   yScale1,
   yScale2,
+  yScale3,
 }: VolumeChartProps) {
   const dispatch = useDispatch()
-  return (
-    <>
+  const hoveredValue = useSelector(currentlyHoverOn)
+  const moveRight = xScale.bandwidth() / 2
+  if (subType === 'RANK') {
+    return (
+      <>
+        <g
+          opacity={
+            hoveredValue === null || hoveredValue === 'volumeSum' ? 1 : 0.2
+          }
+          className="line-chart volume-chart sum-rank"
+          onMouseEnter={() => dispatch(setHoverOn('volumeSum'))}
+          onMouseOut={() => dispatch(setHoverOn(null))}
+          transform={`translate(${moveRight}, 0)`}
+        >
+          <path
+            className="svg-path sum-rank"
+            d={
+              line<GetTokenVolumeRankDto>()
+                .x(d => xScale(d.datetime)!)
+                .y(d => yScale1!(d.volumeSumRank))(data)!
+            }
+          />
+        </g>
+        <g
+          opacity={
+            hoveredValue === null || hoveredValue === 'volumeDiffRate' ? 1 : 0.2
+          }
+          className="line-chart volume-chart diff-rate-rank"
+          onMouseEnter={() => dispatch(setHoverOn('volumeDiffRate'))}
+          onMouseOut={() => dispatch(setHoverOn(null))}
+          transform={`translate(${moveRight}, 0)`}
+        >
+          <path
+            className="svg-path diff-rate-rank"
+            d={
+              line<GetTokenVolumeRankDto>()
+                .x(d => xScale(d.datetime)!)
+                .y(d => yScale2!(d.volumeDiffRateRank))(data)!
+            }
+          />
+        </g>
+      </>
+    )
+  } else
+    return (
       <g
         opacity={
-          hoveredValue === null || hoveredValue === 'volumeSumRank' ? 1 : 0.2
+          hoveredValue === null || hoveredValue === 'volumeDiffRate' ? 1 : 0.2
         }
-        className="line-chart volume-chart sum-rank"
-        onMouseEnter={() => dispatch(setHoverOn('volumeSumRank'))}
+        className="line-chart volume-chart diff-rate"
+        onMouseEnter={() => dispatch(setHoverOn('volumeDiffRate'))}
         onMouseOut={() => dispatch(setHoverOn(null))}
+        transform={`translate(${moveRight}, 0)`}
       >
         <path
-          className="svg-path sum-rank"
+          className="svg-path diff-rate"
           d={
             line<GetTokenVolumeRankDto>()
-              .x(d => xScale(new Date(d.datetime)))
-              .y(d => yScale1(d.volumeSumRank))(data)!
+              .x(d => xScale(d.datetime)!)
+              .y(d => yScale3!(d.volumeDiffRate * 100))(data)!
           }
         />
       </g>
-      <g
-        opacity={
-          hoveredValue === null || hoveredValue === 'volumeDiffRateRank'
-            ? 1
-            : 0.2
-        }
-        className="line-chart volume-chart diff-rate-rank"
-        onMouseEnter={() => dispatch(setHoverOn('volumeDiffRateRank'))}
-        onMouseOut={() => dispatch(setHoverOn(null))}
-      >
-        <path
-          className="svg-path diff-rate-rank"
-          d={
-            line<GetTokenVolumeRankDto>()
-              .x(d => xScale(new Date(d.datetime)))
-              .y(d => yScale2(d.volumeDiffRateRank))(data)!
-          }
-        />
-      </g>
-    </>
-  )
+    )
 }

@@ -41,17 +41,11 @@ export const datetimeSlice = createSlice({
     setTime: (state, action) => {
       state.time = { ...state.time, ...action.payload }
     },
-    openCalendar: state => {
-      state.isOpenCalendar = true
+    toggleCalendar: (state, action) => {
+      state.isOpenCalendar = action.payload
     },
-    closeCalendar: state => {
-      state.isOpenCalendar = false
-    },
-    openTimeOption: state => {
-      state.isOpenTimeOption = true
-    },
-    closeTimeOption: state => {
-      state.isOpenTimeOption = false
+    toggleTimeOption: (state, action) => {
+      state.isOpenTimeOption = action.payload
     },
     reset: state => {
       state.value = ''
@@ -63,10 +57,8 @@ export const {
   setDatetime,
   setDateValue,
   setTime,
-  openCalendar,
-  closeCalendar,
-  openTimeOption,
-  closeTimeOption,
+  toggleCalendar,
+  toggleTimeOption,
   reset,
 } = datetimeSlice.actions
 export const currentDatetime = (state: any) => state.datetime.value

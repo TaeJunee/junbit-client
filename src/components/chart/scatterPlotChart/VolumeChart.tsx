@@ -1,107 +1,150 @@
-import { useDispatch } from 'react-redux'
-import { XScaleTime, YScale } from '..'
+import { useDispatch, useSelector } from 'react-redux'
+import { XScaleBand, YScale } from '..'
 import { GetTokenVolumeRankDto } from '../../../redux/api/token/chart/dtos'
-import {
-  setCircleHoverOn,
-  setHoverOn,
-  setRankHoverOn,
-} from '../../../redux/chart/hoverSlice'
+import { currentlyHoverOn, setHoverOn } from '../../../redux/chart/chartSlice'
+import ToolTip from '../tolltip/ToolTip'
 
 interface VolumeChartProps {
+  subType: string
   data: GetTokenVolumeRankDto[]
-  hoveredValue: string | null
-  xScale: XScaleTime
-  yScale1: YScale
-  yScale2: YScale
+  xScale: XScaleBand
+  yScale1?: YScale
+  yScale2?: YScale
+  yScale3?: YScale
 }
 
 export default function VolumeChart({
+  subType,
   data,
-  hoveredValue,
   xScale,
   yScale1,
   yScale2,
+  yScale3,
 }: VolumeChartProps) {
   const dispatch = useDispatch()
-  return (
-    <>
+  const hoveredValue = useSelector(currentlyHoverOn)
+  const moveRight = xScale.bandwidth() / 2
+  if (subType === 'RANK') {
+    return (
+      <>
+        <g
+          opacity={
+            hoveredValue === null || hoveredValue === 'volumeSum' ? 1 : 0.1
+          }
+          className="scatter-plot-chart volume-chart sum-rank"
+          onMouseOver={() => dispatch(setHoverOn('volumeSum'))}
+          onMouseLeave={() => dispatch(setHoverOn(null))}
+          transform={`translate(${moveRight}, 0)`}
+        >
+          {data?.map((d, index, array) => {
+            const xPosition = xScale(d.datetime)
+            const yPosition = yScale1!(d.volumeSumRank)
+            return (
+              <g key={d.datetime}>
+                <circle
+                  className="svg-circle sum-rank"
+                  cx={xPosition}
+                  cy={yPosition}
+                />
+                <circle
+                  className="svg-circle-hidden sum-rank"
+                  key={d.datetime}
+                  cx={xPosition}
+                  cy={yPosition}
+                />
+                <ToolTip
+                  type="순위"
+                  hoverOn="volumeSum"
+                  index={index}
+                  length={array.length}
+                  value={d.volumeSumRank}
+                  xPosition={xPosition}
+                  yPosition={yPosition}
+                  datetime={d.datetime}
+                />
+              </g>
+            )
+          })}
+        </g>
+        <g
+          opacity={
+            hoveredValue === null || hoveredValue === 'volumeDiffRate' ? 1 : 0.1
+          }
+          className="scatter-plot-chart volume-chart diff-rate-rank"
+          onMouseOver={() => dispatch(setHoverOn('volumeDiffRate'))}
+          onMouseLeave={() => dispatch(setHoverOn(null))}
+          transform={`translate(${moveRight}, 0)`}
+        >
+          {data?.map((d, index, array) => {
+            const xPosition = xScale(d.datetime)
+            const yPosition = yScale2!(d.volumeDiffRateRank)
+            return (
+              <g key={d.datetime}>
+                <circle
+                  className="svg-circle diff-rate-rank"
+                  cx={xPosition}
+                  cy={yPosition}
+                />
+                <circle
+                  className="svg-circle-hidden diff-rate-rank"
+                  cx={xPosition}
+                  cy={yPosition}
+                />
+                <ToolTip
+                  type="순위"
+                  hoverOn="volumeDiffRate"
+                  index={index}
+                  length={array.length}
+                  value={d.volumeDiffRateRank}
+                  xPosition={xPosition}
+                  yPosition={yPosition}
+                  datetime={d.datetime}
+                />
+              </g>
+            )
+          })}
+        </g>
+      </>
+    )
+  } else
+    return (
       <g
         opacity={
-          hoveredValue === null || hoveredValue === 'volumeSumRank' ? 1 : 0.1
+          hoveredValue === null || hoveredValue === 'volumeDiffRate' ? 1 : 0.1
         }
-        className="scatter-plot-chart volume-chart sum-rank"
-        onMouseOver={() => dispatch(setHoverOn('volumeSumRank'))}
+        className="scatter-plot-chart volume-chart diff-rate"
+        onMouseOver={() => dispatch(setHoverOn('volumeDiffRate'))}
         onMouseLeave={() => dispatch(setHoverOn(null))}
+        transform={`translate(${moveRight}, 0)`}
       >
-        {data?.map(d => {
-          const xPosition = xScale(new Date(d.datetime))
-          const yPosition = yScale1(d.volumeSumRank)
+        {data?.map((d, index, array) => {
+          const xPosition = xScale(d.datetime)
+          const yPosition = yScale3!(d.volumeDiffRate * 100)
           return (
-            <g
-              key={d.datetime}
-              onMouseOver={() => {
-                dispatch(setCircleHoverOn(d.datetime))
-                dispatch(setRankHoverOn(d.volumeSumRank))
-              }}
-              onMouseOut={() => {
-                dispatch(setCircleHoverOn(null))
-                dispatch(setRankHoverOn(null))
-              }}
-            >
+            <g key={d.datetime}>
               <circle
-                className="svg-circle sum-rank"
+                className="svg-circle diff-rate"
                 cx={xPosition}
                 cy={yPosition}
               />
               <circle
-                className="svg-circle-hidden sum-rank"
-                key={d.datetime}
+                className="svg-circle-hidden diff-rate"
                 cx={xPosition}
                 cy={yPosition}
+              />
+              <ToolTip
+                type="변화율(%)"
+                hoverOn="volumeDiffRate"
+                index={index}
+                length={array.length}
+                value={d.volumeDiffRate * 100}
+                xPosition={xPosition}
+                yPosition={yPosition}
+                datetime={d.datetime}
               />
             </g>
           )
         })}
       </g>
-      <g
-        opacity={
-          hoveredValue === null || hoveredValue === 'volumeDiffRateRank'
-            ? 1
-            : 0.1
-        }
-        className="scatter-plot-chart volume-chart diff-rate-rank"
-        onMouseOver={() => dispatch(setHoverOn('volumeDiffRateRank'))}
-        onMouseLeave={() => dispatch(setHoverOn(null))}
-      >
-        {data?.map(d => {
-          const xPosition = xScale(new Date(d.datetime))
-          const yPosition = yScale2(d.volumeDiffRateRank)
-          return (
-            <g
-              key={d.datetime}
-              onMouseOver={() => {
-                dispatch(setCircleHoverOn(d.datetime))
-                dispatch(setRankHoverOn(d.volumeDiffRateRank))
-              }}
-              onMouseOut={() => {
-                dispatch(setCircleHoverOn(null))
-                dispatch(setRankHoverOn(null))
-              }}
-            >
-              <circle
-                className="svg-circle diff-rate-rank"
-                cx={xPosition}
-                cy={yPosition}
-              />
-              <circle
-                className="svg-circle-hidden diff-rate-rank"
-                cx={xPosition}
-                cy={yPosition}
-              />
-            </g>
-          )
-        })}
-      </g>
-    </>
-  )
+    )
 }
