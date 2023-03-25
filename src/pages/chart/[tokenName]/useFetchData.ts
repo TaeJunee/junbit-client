@@ -5,9 +5,9 @@ import {
   useGetTokenVolumeRankQuery,
   useGetTokenPriceRankQuery,
 } from '../../../redux/api/token/chart/chartSlice'
-import { currentRadioOption } from '../../../redux/table/radioOption/radioOptionSlice'
-import { currentUnit } from '../../../redux/table/unit/unitSlice'
-import { currentDatetime } from '../../../redux/table/datetime/datetimeSlice'
+import { currentRadioOption } from '../../../redux/controlPanel/radioOption/radioOptionSlice'
+import { currentUnit } from '../../../redux/controlPanel/unit/unitSlice'
+import { currentDatetime } from '../../../redux/controlPanel/datetime/datetimeSlice'
 import { tokenData } from '../../../infra/token'
 import { getKeyByValue } from '../../../utils/getKey'
 

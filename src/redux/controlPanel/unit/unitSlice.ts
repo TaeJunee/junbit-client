@@ -21,17 +21,13 @@ export const unitSlice = createSlice({
     setUnitData: (state, action) => {
       state.unit = { ...state.unit, ...action.payload }
     },
-    openUnitOption: state => {
-      state.isOpenUnitOption = true
-    },
-    closeUnitOption: state => {
-      state.isOpenUnitOption = false
+    toggleUnitOption: (state, action) => {
+      state.isOpenUnitOption = action.payload
     },
   },
 })
 
-export const { setUnitData, openUnitOption, closeUnitOption } =
-  unitSlice.actions
+export const { setUnitData, toggleUnitOption } = unitSlice.actions
 export const currentUnit = (state: any) => state.unit.unit
 export const isOpenUnitOption = (state: any) => state.unit.isOpenUnitOption
 export default unitSlice.reducer

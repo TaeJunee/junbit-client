@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { useGetTradeVolumeRankQuery } from '../../redux/api/token/tradeVolume/tradeVolumeSlice'
-import { currentDatetime } from '../../redux/table/datetime/datetimeSlice'
-import { currentUnit } from '../../redux/table/unit/unitSlice'
+import { currentDatetime } from '../../redux/controlPanel/datetime/datetimeSlice'
+import { currentUnit } from '../../redux/controlPanel/unit/unitSlice'
 import {
   currentRadioOption,
   currentRadioPriceOption,
-} from '../../redux/table/radioOption/radioOptionSlice'
+} from '../../redux/controlPanel/radioOption/radioOptionSlice'
 import { useGetTradePriceRankQuery } from '../../redux/api/token/tradePrice/tradePriceSlice'
 
 export default function useFetchData() {

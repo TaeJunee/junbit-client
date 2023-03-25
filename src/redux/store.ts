@@ -1,9 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit'
 import { apiSlice } from './api/apiSlice'
-import datetimeReducer from './table/datetime/datetimeSlice'
-import unitReducer from './table/unit/unitSlice'
-import radioOptionReducer from './table/radioOption/radioOptionSlice'
-import hoverReducer from './chart/hoverSlice'
+import datetimeReducer from './controlPanel/datetime/datetimeSlice'
+import unitReducer from './controlPanel/unit/unitSlice'
+import radioOptionReducer from './controlPanel/radioOption/radioOptionSlice'
+import chartReducer from './chart/chartSlice'
 
 export const store = configureStore({
   reducer: {
@@ -11,7 +11,7 @@ export const store = configureStore({
     datetime: datetimeReducer,
     unit: unitReducer,
     radioOption: radioOptionReducer,
-    hover: hoverReducer,
+    chart: chartReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware().concat(apiSlice.middleware),

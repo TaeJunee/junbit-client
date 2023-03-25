@@ -7,8 +7,11 @@ import {
   currentDatetime,
   currentTime,
   setDatetime,
-} from '../../redux/table/datetime/datetimeSlice'
-import { currentUnit, setUnitData } from '../../redux/table/unit/unitSlice'
+} from '../../redux/controlPanel/datetime/datetimeSlice'
+import {
+  currentUnit,
+  setUnitData,
+} from '../../redux/controlPanel/unit/unitSlice'
 
 export default function useControlPanel() {
   const dispatch = useDispatch()
