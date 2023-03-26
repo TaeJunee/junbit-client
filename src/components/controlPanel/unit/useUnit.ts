@@ -1,9 +1,7 @@
-import { useCallback, useEffect, useRef } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
   currentUnit,
-  isOpenUnitOption,
-  toggleUnitOption,
   setUnitData,
 } from '../../../redux/controlPanel/unit/unitSlice'
 
@@ -11,20 +9,20 @@ export default function useUnit() {
   const dispatch = useDispatch()
   const unitOptionRef = useRef<HTMLDivElement>(null)
   const unit = useSelector(currentUnit)
-  const isOpenUnit = useSelector(isOpenUnitOption)
+  const [isOpenUnitOption, openUnitOption] = useState(false)
 
   const handleToggleUnitOption = () => {
-    dispatch(toggleUnitOption(!isOpenUnit))
+    openUnitOption(!isOpenUnitOption)
   }
 
   const handleCloseUnitOption = useCallback(
     (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (isOpenUnit && !unitOptionRef.current?.contains(target)) {
-        dispatch(toggleUnitOption(false))
+      if (isOpenUnitOption && !unitOptionRef.current?.contains(target)) {
+        openUnitOption(false)
       }
     },
-    [isOpenUnit, dispatch]
+    [isOpenUnitOption]
   )
 
   const handleSetUnit = (value: UnitType | number, displayText: string) => {
@@ -44,7 +42,7 @@ export default function useUnit() {
 
   return {
     unit,
-    isOpenUnit,
+    isOpenUnitOption,
     unitOptionRef,
     handleSetUnit,
     handleToggleUnitOption,
