@@ -37,7 +37,8 @@ const marginLeft = 80
 const marginRight = 40
 const lineChartInnerHeight = height - marginTop - marginBottom
 const barChartInnerHeight = height - marginTop - marginBottom2
-
+const radius = 2.5
+const radiusHidden = 12
 export default function Chart({
   volumeData,
   priceData,
@@ -123,6 +124,8 @@ export default function Chart({
                       yScalePriceSumRank={yScalePriceSumRank}
                       yScalePriceDiffRank={yScalePriceDiffRank}
                       yScalePriceDiffRateRank={yScalePriceDiffRateRank}
+                      radius={radius}
+                      radiusHidden={radiusHidden}
                     />
                   </g>
                 </svg>
@@ -178,6 +181,8 @@ export default function Chart({
                       yScaleVolumeDiffRate={yScaleVolumeDiffRate}
                       yScalePriceDiff={yScalePriceDiff}
                       yScalePriceDiffRate={yScalePriceDiffRate}
+                      radius={radius}
+                      radiusHidden={radiusHidden}
                     />
                   </g>
                 </svg>

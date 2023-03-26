@@ -12,7 +12,6 @@ import {
 } from '../../../redux/controlPanel/datetime/datetimeSlice'
 export default function useDatetime() {
   const dispatch = useDispatch()
-  // const [openTimeOption, setOpenTimeOption] = useState(false)
   const [wide, setWide] = useState(false)
   const dateValue = useSelector(currentDate)
   const time = useSelector(currentTime)
@@ -32,7 +31,7 @@ export default function useDatetime() {
     (e: MouseEvent) => {
       const target = e.target as HTMLElement
       if (isOpenCal && !calendarRef.current?.contains(target)) {
-        dispatch(toggleCalendar(true))
+        dispatch(toggleCalendar(false))
       }
     },
     [isOpenCal, dispatch]

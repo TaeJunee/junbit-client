@@ -13,6 +13,8 @@ interface PriceChartProps {
   yScale3?: YScale
   yScale4?: YScale
   yScale5?: YScale
+  radius: number
+  radiusHidden: number
 }
 
 export default function PriceChart({
@@ -24,6 +26,8 @@ export default function PriceChart({
   yScale3,
   yScale4,
   yScale5,
+  radius,
+  radiusHidden,
 }: PriceChartProps) {
   const dispatch = useDispatch()
   const hoveredValue = useSelector(currentlyHoverOn)
@@ -49,11 +53,13 @@ export default function PriceChart({
                   className="svg-circle sum-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radius}
                 />
                 <circle
                   className="svg-circle-hidden sum-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radiusHidden}
                 />
                 <ToolTip
                   type="순위"
@@ -87,11 +93,13 @@ export default function PriceChart({
                   className="svg-circle diff-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radius}
                 />
                 <circle
                   className="svg-circle-hidden diff-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radiusHidden}
                 />
                 <ToolTip
                   type="순위"
@@ -125,11 +133,13 @@ export default function PriceChart({
                   className="svg-circle diff-rate-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radius}
                 />
                 <circle
                   className="svg-circle-hidden diff-rate-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radiusHidden}
                 />
                 <ToolTip
                   type="순위"
@@ -168,11 +178,13 @@ export default function PriceChart({
                   className="svg-circle diff"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radius}
                 />
                 <circle
                   className="svg-circle-hidden diff"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radiusHidden}
                 />
                 <ToolTip
                   type="변화량(원)"
@@ -206,11 +218,13 @@ export default function PriceChart({
                   className="svg-circle diff-rate"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radius}
                 />
                 <circle
                   className="svg-circle-hidden diff-rate"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radiusHidden}
                 />
                 <ToolTip
                   type="변화율(%)"

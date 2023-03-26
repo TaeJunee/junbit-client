@@ -1,9 +1,29 @@
+import { XScaleBand, YScale } from '..'
+import { GetTokenPriceRankDto, GetTokenVolumeRankDto } from '../../../redux/api/token/chart/dtos'
 import AxisBottom from '../axis/AxisBottom'
 import AxisLeft from '../axis/AxisLeft'
 import AxisRight from '../axis/AxisRight'
-import { RankChartProps } from '../scatterPlotChart'
 import PriceChart from './PriceChart'
 import VolumeChart from './VolumeChart'
+
+export interface RankChartProps {
+  type: RadioOptionType
+  subType: string
+  innerWidth?: number
+  innerHeight?: number
+  volumeData: GetTokenVolumeRankDto[]
+  priceData: GetTokenPriceRankDto[]
+  xScaleVolumeRank: XScaleBand
+  xScalePriceRank: XScaleBand
+  yScaleVolumeDiffRate?: YScale
+  yScalePriceDiff?: YScale
+  yScalePriceDiffRate?: YScale
+  yScaleVolumeSumRank?: YScale
+  yScaleVolumeDiffRateRank?: YScale
+  yScalePriceSumRank?: YScale
+  yScalePriceDiffRank?: YScale
+  yScalePriceDiffRateRank?: YScale
+}
 
 export default function LineChart({
   type,

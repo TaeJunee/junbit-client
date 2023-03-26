@@ -1,12 +1,12 @@
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-
 import { useGetTradeVolumeRankQuery } from '../../redux/api/token/tradeVolume/tradeVolumeSlice'
 import {
   currentDate,
   currentDatetime,
   currentTime,
   setDatetime,
+  toggleCalendar,
 } from '../../redux/controlPanel/datetime/datetimeSlice'
 import {
   currentUnit,
@@ -36,7 +36,7 @@ export default function useControlPanel() {
       date.getDate(),
       time.value
     ).toISOString()
-
+    dispatch(toggleCalendar(false))
     dispatch(setDatetime(ISODatetime))
     dispatch(setUnitData(unit.value))
     refetch()
