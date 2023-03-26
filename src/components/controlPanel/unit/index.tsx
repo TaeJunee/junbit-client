@@ -7,7 +7,7 @@ import SelectInput from '../../common/input/SelectInput'
 export default function Unit() {
   const {
     unit,
-    isOpenUnit,
+    isOpenUnitOption,
     unitOptionRef,
     handleSetUnit,
     handleToggleUnitOption,
@@ -19,7 +19,7 @@ export default function Unit() {
       <SelectInput
         ref={unitOptionRef}
         type="UNIT"
-        isOpen={isOpenUnit}
+        isOpen={isOpenUnitOption}
         defaultText={unit.displayText}
         optionList={unitOptions}
         onClick={handleToggleUnitOption}

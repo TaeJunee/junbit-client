@@ -1,12 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import {
-  isOpenCalendar,
-  toggleCalendar,
   currentDate,
   setDateValue,
-  toggleTimeOption,
-  isOpenTimeOption,
   currentTime,
   setTime,
 } from '../../../redux/controlPanel/datetime/datetimeSlice'
@@ -15,50 +11,50 @@ export default function useDatetime() {
   const [wide, setWide] = useState(false)
   const dateValue = useSelector(currentDate)
   const time = useSelector(currentTime)
-  const isOpenCal = useSelector(isOpenCalendar)
-  const isOpenTimeOpt = useSelector(isOpenTimeOption)
+  const [isOpenCalendar, openCalendar] = useState(false)
+  const [isOpenTimeOption, openTimeOption] = useState(false)
   const calendarRef = useRef<HTMLDivElement>(null)
   const closeButtonRef = useRef<HTMLButtonElement>(null)
   const timeOptionRef = useRef<HTMLDivElement>(null)
 
   const handleOpenCalendar = (e: React.MouseEvent) => {
     e.stopPropagation()
-    dispatch(toggleTimeOption(false))
-    dispatch(toggleCalendar(true))
+    openTimeOption(false)
+    openCalendar(true)
   }
 
   const handleCloseCalendar = useCallback(
     (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (isOpenCal && !calendarRef.current?.contains(target)) {
-        dispatch(toggleCalendar(false))
+      if (isOpenCalendar && !calendarRef.current?.contains(target)) {
+        openCalendar(false)
       }
     },
-    [isOpenCal, dispatch]
+    [isOpenCalendar]
   )
 
   const handleSetDate = (e: Date) => {
     dispatch(setDateValue(e.toISOString()))
-    dispatch(toggleCalendar(false))
+    openCalendar(false)
   }
 
   const handleClickCloseCalendar = (e: React.MouseEvent) => {
     e.stopPropagation()
-    dispatch(toggleCalendar(false))
+    openCalendar(false)
   }
 
   const handleToggleTimeOption = () => {
-    dispatch(toggleTimeOption(!isOpenTimeOpt))
+    openTimeOption(!isOpenTimeOption)
   }
 
   const handleCloseTimeOption = useCallback(
     (e: MouseEvent) => {
       const target = e.target as HTMLElement
-      if (isOpenTimeOpt && !timeOptionRef.current?.contains(target)) {
-        dispatch(toggleTimeOption(false))
+      if (isOpenTimeOption && !timeOptionRef.current?.contains(target)) {
+        openTimeOption(false)
       }
     },
-    [isOpenTimeOpt, dispatch]
+    [isOpenTimeOption]
   )
 
   const handleSetTime = (value: number, displayText: string) => {
@@ -78,8 +74,8 @@ export default function useDatetime() {
   }, [handleCloseCalendar, handleCloseTimeOption])
 
   return {
-    isOpenCal,
-    isOpenTimeOpt,
+    isOpenCalendar,
+    isOpenTimeOption,
     dateValue,
     time,
     wide,

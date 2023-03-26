@@ -6,7 +6,6 @@ import {
   currentDatetime,
   currentTime,
   setDatetime,
-  toggleCalendar,
 } from '../../redux/controlPanel/datetime/datetimeSlice'
 import {
   currentUnit,
@@ -36,7 +35,6 @@ export default function useControlPanel() {
       date.getDate(),
       time.value
     ).toISOString()
-    dispatch(toggleCalendar(false))
     dispatch(setDatetime(ISODatetime))
     dispatch(setUnitData(unit.value))
     refetch()

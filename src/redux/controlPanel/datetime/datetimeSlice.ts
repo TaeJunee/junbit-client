@@ -4,8 +4,6 @@ import 'moment/locale/ko'
 
 const date = new Date()
 interface InitialState {
-  isOpenCalendar: boolean
-  isOpenTimeOption: boolean
   dateValue: string
   time: {
     value: number
@@ -17,8 +15,6 @@ interface InitialState {
 export const datetimeSlice = createSlice({
   name: 'datetime',
   initialState: {
-    isOpenCalendar: false,
-    isOpenTimeOption: false,
     dateValue: new Date().toISOString(),
     time: {
       value: date.getHours() - 1,
@@ -41,15 +37,6 @@ export const datetimeSlice = createSlice({
     setTime: (state, action) => {
       state.time = { ...state.time, ...action.payload }
     },
-    toggleCalendar: (state, action) => {
-      state.isOpenCalendar = action.payload
-    },
-    toggleTimeOption: (state, action) => {
-      state.isOpenTimeOption = action.payload
-    },
-    reset: state => {
-      state.value = ''
-    },
   },
 })
 
@@ -57,13 +44,8 @@ export const {
   setDatetime,
   setDateValue,
   setTime,
-  toggleCalendar,
-  toggleTimeOption,
-  reset,
 } = datetimeSlice.actions
 export const currentDatetime = (state: any) => state.datetime.value
 export const currentDate = (state: any) => state.datetime.dateValue
 export const currentTime = (state: any) => state.datetime.time
-export const isOpenCalendar = (state: any) => state.datetime.isOpenCalendar
-export const isOpenTimeOption = (state: any) => state.datetime.isOpenTimeOption
 export default datetimeSlice.reducer

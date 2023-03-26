@@ -9,8 +9,8 @@ import SelectInput from '../../common/input/SelectInput'
 
 export default function Datetime() {
   const {
-    isOpenCal,
-    isOpenTimeOpt,
+    isOpenCalendar,
+    isOpenTimeOption,
     dateValue,
     time,
     wide,
@@ -39,7 +39,7 @@ export default function Datetime() {
             <span>달력 열기</span>
             <img className="ic-arrow" src={icArrowRight} alt="달력 열기" />
           </OpenCalendarButton>
-          {isOpenCal && (
+          {isOpenCalendar && (
             <CalendarWrapper ref={calendarRef}>
               <Calendar
                 calendarType="US"
@@ -69,7 +69,7 @@ export default function Datetime() {
         <SelectInput
           ref={timeOptionRef}
           type="TIME"
-          isOpen={isOpenTimeOpt}
+          isOpen={isOpenTimeOption}
           defaultText={time.displayText}
           optionList={timeOptions}
           onClick={handleToggleTimeOption}
