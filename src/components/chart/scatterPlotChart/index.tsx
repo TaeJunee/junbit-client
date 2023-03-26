@@ -1,28 +1,10 @@
-import { XScaleBand, YScale } from '..'
-import {
-  GetTokenPriceRankDto,
-  GetTokenVolumeRankDto,
-} from '../../../redux/api/token/chart/dtos'
 import PriceChart from './PriceChart'
 import VolumeChart from './VolumeChart'
+import { RankChartProps } from '../lineChart'
 
-export interface RankChartProps {
-  type: RadioOptionType
-  subType: string
-  innerWidth?: number
-  innerHeight?: number
-  volumeData: GetTokenVolumeRankDto[]
-  priceData: GetTokenPriceRankDto[]
-  xScaleVolumeRank: XScaleBand
-  xScalePriceRank: XScaleBand
-  yScaleVolumeDiffRate?: YScale
-  yScalePriceDiff?: YScale
-  yScalePriceDiffRate?: YScale
-  yScaleVolumeSumRank?: YScale
-  yScaleVolumeDiffRateRank?: YScale
-  yScalePriceSumRank?: YScale
-  yScalePriceDiffRank?: YScale
-  yScalePriceDiffRateRank?: YScale
+interface ExtendedRankChartProps extends RankChartProps {
+  radius: number
+  radiusHidden: number
 }
 
 export default function ScatterPlotChart({
@@ -40,7 +22,9 @@ export default function ScatterPlotChart({
   yScalePriceSumRank,
   yScalePriceDiffRank,
   yScalePriceDiffRateRank,
-}: RankChartProps) {
+  radius,
+  radiusHidden,
+}: ExtendedRankChartProps) {
   if (type === 'VOLUME') {
     if (subType === 'RANK') {
       return (
@@ -51,6 +35,8 @@ export default function ScatterPlotChart({
             xScale={xScaleVolumeRank}
             yScale1={yScaleVolumeSumRank!}
             yScale2={yScaleVolumeDiffRateRank!}
+            radius={radius}
+            radiusHidden={radiusHidden}
           />
         </>
       )
@@ -62,6 +48,8 @@ export default function ScatterPlotChart({
             data={volumeData}
             xScale={xScaleVolumeRank}
             yScale3={yScaleVolumeDiffRate!}
+            radius={radius}
+            radiusHidden={radiusHidden}
           />
         </>
       )
@@ -76,6 +64,8 @@ export default function ScatterPlotChart({
             yScale1={yScalePriceSumRank!}
             yScale2={yScalePriceDiffRank!}
             yScale3={yScalePriceDiffRateRank!}
+            radius={radius}
+            radiusHidden={radiusHidden}
           />
         </>
       )
@@ -91,6 +81,8 @@ export default function ScatterPlotChart({
             yScale3={yScalePriceDiffRateRank!}
             yScale4={yScalePriceDiff!}
             yScale5={yScalePriceDiffRate!}
+            radius={radius}
+            radiusHidden={radiusHidden}
           />
         </>
       )

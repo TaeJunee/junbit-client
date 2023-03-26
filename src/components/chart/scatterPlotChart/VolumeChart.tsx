@@ -11,6 +11,8 @@ interface VolumeChartProps {
   yScale1?: YScale
   yScale2?: YScale
   yScale3?: YScale
+  radius: number
+  radiusHidden: number
 }
 
 export default function VolumeChart({
@@ -20,10 +22,13 @@ export default function VolumeChart({
   yScale1,
   yScale2,
   yScale3,
+  radius,
+  radiusHidden,
 }: VolumeChartProps) {
   const dispatch = useDispatch()
   const hoveredValue = useSelector(currentlyHoverOn)
   const moveRight = xScale.bandwidth() / 2
+
   if (subType === 'RANK') {
     return (
       <>
@@ -45,12 +50,14 @@ export default function VolumeChart({
                   className="svg-circle sum-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radius}
                 />
                 <circle
                   className="svg-circle-hidden sum-rank"
                   key={d.datetime}
                   cx={xPosition}
                   cy={yPosition}
+                  r={radiusHidden}
                 />
                 <ToolTip
                   type="순위"
@@ -84,11 +91,13 @@ export default function VolumeChart({
                   className="svg-circle diff-rate-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radius}
                 />
                 <circle
                   className="svg-circle-hidden diff-rate-rank"
                   cx={xPosition}
                   cy={yPosition}
+                  r={radiusHidden}
                 />
                 <ToolTip
                   type="순위"
@@ -126,11 +135,13 @@ export default function VolumeChart({
                 className="svg-circle diff-rate"
                 cx={xPosition}
                 cy={yPosition}
+                r={radius}
               />
               <circle
                 className="svg-circle-hidden diff-rate"
                 cx={xPosition}
                 cy={yPosition}
+                r={radiusHidden}
               />
               <ToolTip
                 type="변화율(%)"

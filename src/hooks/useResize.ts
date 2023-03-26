@@ -1,5 +1,5 @@
 import { debounce } from 'lodash'
-import { useCallback, useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 export default function useResize(ref: React.RefObject<HTMLDivElement>) {
   const [width, setWidth] = useState<number | undefined>(
@@ -9,19 +9,19 @@ export default function useResize(ref: React.RefObject<HTMLDivElement>) {
     ref.current?.offsetHeight
   )
 
-  const setOffsetWidth = useCallback(() => 
+  const setOffsetWidth = useMemo(() =>
     debounce(() => {
       setWidth(ref.current?.offsetWidth)
-    }, 500),
-    [ref]
-  )
+    }, 500)
+  , [ref])
 
-  const setOffsetHeight = useCallback(() =>
+
+  const setOffsetHeight = useMemo(() =>
     debounce(() => {
       setHeight(ref.current?.offsetHeight)
-    }, 500),
-    [ref]
-  )
+    }, 500)
+  , [ref])
+
 
   useEffect(() => {
     window.addEventListener('resize', () => {
