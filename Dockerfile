@@ -8,10 +8,6 @@ RUN npm ci
 
 COPY . .
 
-ARG url
-
-ENV REACT_APP_API_URL=$url
-
 RUN npm run build
 
 FROM fholzer/nginx-brotli:v1.12.2
@@ -22,6 +18,6 @@ ADD nginx.conf /etc/nginx/nginx.conf
 
 COPY --from=build /app/build /usr/share/nginx/html
 
-EXPOSE 443
+EXPOSE $PORT
 
 CMD ["nginx", "-g", "daemon off;"]
