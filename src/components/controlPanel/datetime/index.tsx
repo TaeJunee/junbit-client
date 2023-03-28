@@ -43,7 +43,7 @@ export default function Datetime() {
             <CalendarWrapper ref={calendarRef}>
               <Calendar
                 calendarType="US"
-                onChange={(e) => handleSetDate(e as Date)}
+                onChange={e => handleSetDate(e as Date)}
                 defaultValue={date}
                 minDetail={'month'}
                 showFixedNumberOfWeeks={false}

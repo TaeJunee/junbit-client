@@ -1,5 +1,8 @@
 import { XScaleBand, YScale } from '..'
-import { GetTokenPriceRankDto, GetTokenVolumeRankDto } from '../../../redux/api/token/chart/dtos'
+import {
+  GetTokenPriceRankDto,
+  GetTokenVolumeRankDto,
+} from '../../../redux/api/token/chart/dtos'
 import AxisBottom from '../axis/AxisBottom'
 import AxisLeft from '../axis/AxisLeft'
 import AxisRight from '../axis/AxisRight'

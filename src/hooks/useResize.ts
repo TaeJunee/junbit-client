@@ -9,19 +9,21 @@ export default function useResize(ref: React.RefObject<HTMLDivElement>) {
     ref.current?.offsetHeight
   )
 
-  const setOffsetWidth = useMemo(() =>
-    debounce(() => {
-      setWidth(ref.current?.offsetWidth)
-    }, 500)
-  , [ref])
+  const setOffsetWidth = useMemo(
+    () =>
+      debounce(() => {
+        setWidth(ref.current?.offsetWidth)
+      }, 500),
+    [ref]
+  )
 
-
-  const setOffsetHeight = useMemo(() =>
-    debounce(() => {
-      setHeight(ref.current?.offsetHeight)
-    }, 500)
-  , [ref])
-
+  const setOffsetHeight = useMemo(
+    () =>
+      debounce(() => {
+        setHeight(ref.current?.offsetHeight)
+      }, 500),
+    [ref]
+  )
 
   useEffect(() => {
     window.addEventListener('resize', () => {
