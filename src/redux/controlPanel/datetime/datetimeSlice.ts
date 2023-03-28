@@ -40,11 +40,7 @@ export const datetimeSlice = createSlice({
   },
 })
 
-export const {
-  setDatetime,
-  setDateValue,
-  setTime,
-} = datetimeSlice.actions
+export const { setDatetime, setDateValue, setTime } = datetimeSlice.actions
 export const currentDatetime = (state: any) => state.datetime.value
 export const currentDate = (state: any) => state.datetime.dateValue
 export const currentTime = (state: any) => state.datetime.time
