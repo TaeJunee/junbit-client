@@ -1,46 +1,25 @@
-# Getting Started with Create React App
+## I. 프로젝트 개요  
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+업비트 원화마켓에서 거래되는 코인들의 거래량 변화를 한 눈에 볼 수 있도록 정리한 웹사이트입니다.  
+  
+**웹사이트 링크: [🔗웹사이트](https://junbit.kro.kr 'https://junbit.kro.kr')**  
+  
+---    
+## II. Quick Features  
+- 매 시 정각 기준 데이터 확인이 가능합니다
+- 1시간/2시간/4시간/12시간/24시간(1일) 단위로 데이터 확인이 가능합니다.
+- 거래량 변화 순위 모아보기  
+  - 거래 <strong>수량</strong> 기준/거래 <strong>금액</strong> 기준 확인이 가능합니다.
+  - 거래 금액의 경우 <strong>변화량, 변화율</strong> 순위 변동 확인이 가능합니다.  
+  <br />
+  <img src='./media/table.jpg' width='900px' />
 
-## Available Scripts
-
-In the project directory, you can run:
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+    
+- 각 코인별 거래량 순위 변화 확인하기
+  - 표의 각 행을 클릭하면 해당 코인의 차트 페이지로 이동합니다.
+  - 거래 수량의 경우, 상단 차트에서는 단위시간별 거래량 합계 순위, 거래량 변화율 순위 확인이 가능합니다
+  - 하단 차트에서는 단위시간별 거래량 합계, 거래량 합계 변화율 확인이 가능합니다.
+  - 거래 금액의 경우, 상기 자료에 더해, 거래량 변화량 순위 및 변화량 확인이 가능합니다.
+  - 각 꼭짓점에 마우스를 갖다대면 툴팁이 나타납니다.
+  <br />
+  <img src='./media/chart-compressed.gif' width='900px' />
