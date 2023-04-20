@@ -5,7 +5,6 @@ import { BrowserRouter } from 'react-router-dom'
 import GlobalStyle from './style/GlobalStyle'
 import { ThemeProvider } from 'styled-components'
 import theme from './style/theme'
-
 import { store } from './redux/store'
 import { Provider } from 'react-redux'
 

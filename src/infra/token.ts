@@ -413,10 +413,6 @@ export const tokenData: TokenData = {
     korean_name: '폴리곤',
     english_name: 'Polygon',
   },
-  'KRW-NU': {
-    korean_name: '누사이퍼',
-    english_name: 'Nucypher',
-  },
   'KRW-AAVE': {
     korean_name: '에이브',
     english_name: 'Aave',
@@ -460,5 +456,9 @@ export const tokenData: TokenData = {
   'KRW-MASK': {
     korean_name: '마스크네트워크',
     english_name: 'Mask Network',
+  },
+  'KRW-ARB': {
+    korean_name: '아비트럼',
+    english_name: 'Arbitrum',
   },
 }
