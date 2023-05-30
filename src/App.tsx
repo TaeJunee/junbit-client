@@ -11,7 +11,7 @@ function App() {
       <Suspense fallback={<div>로딩 중입니다</div>}>
         <Routes>
           <Route path="/" element={<MainPage />} />
-          <Route path="/chart/:token_name" element={<ChartPage />} />
+          <Route path="/chart/:market" element={<ChartPage />} />
         </Routes>
       </Suspense>
     </>

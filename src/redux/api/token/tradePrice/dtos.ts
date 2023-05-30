@@ -1,5 +1,7 @@
 export interface GetTradePriceRankDto {
   unit: number
+  korean_name?: string
+  english_name?: string
   market: string
   datetime: Date
   priceDiff: bigint

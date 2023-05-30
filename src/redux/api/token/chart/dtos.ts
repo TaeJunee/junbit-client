@@ -1,5 +1,7 @@
 export interface GetTokenVolumeRankDto {
   unit: number
+  korean_name?: string
+  english_name?: string
   market: string
   datetime: string
   volumeSum: number
@@ -10,6 +12,8 @@ export interface GetTokenVolumeRankDto {
 
 export interface GetTokenPriceRankDto {
   unit: number
+  korean_name?: string
+  english_name?: string
   market: string
   datetime: string
   priceSum: number

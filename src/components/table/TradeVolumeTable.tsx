@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { TableHead, TableBody, UpDownIndicator } from './TableStyle'
-import { tokenData } from '../../infra/token'
-import { TokenData } from 'types'
 import { GetTradeVolumeRankDto } from '../../redux/api/token/tradeVolume/dtos'
 
 interface VolumeTableProps {
@@ -75,18 +73,7 @@ export default function VolumeTable({ data }: VolumeTableProps) {
               className="table-body__row"
               key={index}
               onClick={() =>
-                navigate(
-                  `/chart/${
-                    tokenData[value.market as keyof TokenData].english_name
-                  }`,
-                  {
-                    state: {
-                      tokenName:
-                        tokenData[value.market as keyof TokenData].korean_name,
-                      market: value.market,
-                    },
-                  }
-                )
+                navigate(`/chart/${value.market}`)
               }
             >
               <div className="rank">
@@ -94,7 +81,7 @@ export default function VolumeTable({ data }: VolumeTableProps) {
               </div>
               <div className="name">
                 <span>
-                  {tokenData[value.market as keyof TokenData].korean_name}
+                  {value.korean_name}
                 </span>
               </div>
               <div className="rank-up-or-down">

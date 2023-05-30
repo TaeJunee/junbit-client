@@ -1,8 +1,6 @@
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { TableHead, TableBody, UpDownIndicator } from './TableStyle'
-import { tokenData } from '../../infra/token'
-import { TokenData } from 'types'
 import { GetTradePriceRankDto } from '../../redux/api/token/tradePrice/dtos'
 
 interface PriceTableProps {
@@ -76,17 +74,7 @@ export default function PriceTable({ type, data }: PriceTableProps) {
               className="table-body__row"
               key={index}
               onClick={() =>
-                navigate(
-                  `/chart/${
-                    tokenData[value.market as keyof TokenData].english_name
-                  }`,
-                  {
-                    state: {
-                      tokenName:
-                        tokenData[value.market as keyof TokenData].korean_name,
-                    },
-                  }
-                )
+                navigate(`/chart/${value.market}`)
               }
             >
               <div className="rank">
@@ -94,7 +82,7 @@ export default function PriceTable({ type, data }: PriceTableProps) {
               </div>
               <div className="name">
                 <span>
-                  {tokenData[value.market as keyof TokenData].korean_name}
+                  {value.korean_name}
                 </span>
               </div>
               <div className="rank-up-or-down">
