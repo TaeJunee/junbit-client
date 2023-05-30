@@ -8,12 +8,9 @@ import {
 import { currentRadioOption } from '../../../redux/controlPanel/radioOption/radioOptionSlice'
 import { currentUnit } from '../../../redux/controlPanel/unit/unitSlice'
 import { currentDatetime } from '../../../redux/controlPanel/datetime/datetimeSlice'
-import { tokenData } from '../../../infra/token'
-import { getKeyByValue } from '../../../utils/getKey'
 
 export default function useFetchData() {
-  const { token_name: tokenEnName } = useParams()
-  const market = getKeyByValue(tokenData, tokenEnName as string)
+  const { market } = useParams()
   const radioOption = useSelector(currentRadioOption)
   const unit = useSelector(currentUnit)
   const datetime = useSelector(currentDatetime)
