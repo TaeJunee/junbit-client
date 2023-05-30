@@ -81,7 +81,7 @@ export default function VolumeTable({ data }: VolumeTableProps) {
               </div>
               <div className="name">
                 <span>
-                  {value.korean_name}
+                  {value.korean_name || value.market}
                 </span>
               </div>
               <div className="rank-up-or-down">
